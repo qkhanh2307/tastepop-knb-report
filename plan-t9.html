@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KẾ HOẠCH THÁNG 9 · KNB — Chỉ tiêu &amp; CMS</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Inter',sans-serif;
+       background:#eef0f7;color:#16192b;line-height:1.5;padding:20px;-webkit-text-size-adjust:100%}
+  .page{max-width:1180px;margin:0 auto}
+  .money{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .hero{background:linear-gradient(135deg,#0c4a6e 0%,#0369a1 55%,#0ea5e9 100%);
+    border-radius:20px;padding:26px 28px;color:#fff;margin-bottom:14px;
+    box-shadow:0 12px 34px rgba(3,105,161,.3)}
+  .hero h1{font-size:22px;font-weight:800;letter-spacing:-.4px}
+  .hero .sub{font-size:12.5px;opacity:.9;margin:6px 0 18px}
+  .hero-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .hk{background:rgba(255,255,255,.13);border-radius:12px;padding:12px 14px;
+      border:1px solid rgba(255,255,255,.18)}
+  .hk .lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:.6px;opacity:.85;margin-bottom:4px}
+  .hk .val{font-size:17px;font-weight:800;line-height:1.15;letter-spacing:-.3px}
+  .hk .note{font-size:10px;opacity:.82;margin-top:4px}
+  .hk.warn .val{color:#fde68a}.hk.good .val{color:#bbf7d0}.hk.bad .val{color:#fecaca}
+
+  .sec{background:#fff;border-radius:16px;padding:22px 24px;margin-bottom:14px;
+       box-shadow:0 2px 10px rgba(22,25,43,.06)}
+  .sec-h{display:flex;align-items:center;gap:10px;margin-bottom:5px}
+  .sec-ic{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;
+          justify-content:center;font-size:14px;color:#fff;flex-shrink:0}
+  .sec-h h2{font-size:16px;font-weight:750;letter-spacing:-.2px}
+  .sec-sub{font-size:12px;color:#6b7280;margin-bottom:16px;margin-left:40px}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;padding:9px 8px;font-size:9.5px;text-transform:uppercase;letter-spacing:.4px;
+     color:#6b7280;border-bottom:2px solid #eceef5;font-weight:700}
+  th.num,td.num{text-align:right}
+  td{padding:10px 8px;border-bottom:1px solid #f3f4f8}
+  tbody tr:last-child td{border-bottom:none}
+  tr.total td{background:#f8fafc;font-weight:800;border-top:2px solid #e2e8f0}
+  .badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.5px;font-weight:750}
+  .bg{background:#dcfce7;color:#15803d}.by{background:#fef3c7;color:#b45309}.br{background:#fee2e2;color:#b91c1c}
+  .who{font-weight:750}
+  .mut{color:#9aa2b8;font-size:11px;font-weight:400}
+
+
+  /* ===== CỔNG MẬT KHẨU ===== */
+  #gate{position:fixed;inset:0;background:linear-gradient(135deg,#0c4a6e,#0369a1 60%,#0ea5e9);
+        display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+  #gate.hidden{display:none}
+  .gbox{background:#fff;padding:36px 32px;border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.25);
+        width:100%;max-width:360px;text-align:center}
+  .gt1{font-size:19px;font-weight:800;color:#0c4a6e;margin-bottom:6px}
+  .gt2{font-size:12.5px;color:#6b7280;margin-bottom:20px}
+  .gin{width:100%;padding:12px 15px;border:2px solid #e2e8f0;border-radius:12px;font-size:15px;
+       font-family:inherit;outline:none}
+  .gin:focus{border-color:#0369a1}
+  .gbtn{width:100%;background:#0369a1;color:#fff;border:none;padding:12px;border-radius:12px;
+        font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:11px}
+  .gbtn:hover{background:#075985}
+  .gerr{color:#dc2626;font-size:12px;margin-top:8px;min-height:16px}
+  #main{display:none}
+
+  /* ===== VIEW THEO MARKETER ===== */
+  .who-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .wp{background:#f1f5f9;border:1.5px solid #e2e8f0;color:#334155;
+      padding:8px 18px;border-radius:999px;font-size:13px;font-weight:750;cursor:pointer;
+      font-family:inherit;transition:all .15s}
+  .wp:hover{background:#e2e8f0}
+  .wp.on{background:#0f172a;color:#fff;border-color:#0f172a}
+
+  .mv{display:grid;grid-template-columns:340px 1fr;gap:14px}
+  .plan-card{border-radius:14px;padding:18px 20px;background:#f8fafc;border:1.5px solid #e2e8f0}
+  .pc-name{font-size:18px;font-weight:850;letter-spacing:-.3px}
+  .pc-sku{font-size:11.5px;color:#6b7280;margin-bottom:14px}
+  .pc-row{display:flex;justify-content:space-between;font-size:12.5px;padding:7px 0;
+          border-bottom:1px dashed #e2e8f0;gap:10px}
+  .pc-row:last-of-type{border:none}
+  .pc-row span:first-child{color:#6b7280;flex-shrink:0}
+  .pc-row span:last-child{font-weight:750;text-align:right}
+  .pc-day{margin-top:12px;padding:11px 13px;background:#0f172a;color:#fff;border-radius:10px;
+          font-size:12px;text-align:center;line-height:1.6}
+  .pc-day b{font-size:14px}
+
+  .calc{border-radius:14px;padding:18px 20px;background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff}
+  .calc-h{font-size:13px;font-weight:800;margin-bottom:2px}
+  .calc-s{font-size:11px;opacity:.65;margin-bottom:15px}
+  .calc-in{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .sl{margin-bottom:13px}
+  .sl-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;gap:8px}
+  .sl-lb{font-size:11px;opacity:.8;font-weight:600}
+  .sl-vl{font-size:14px;font-weight:800;font-variant-numeric:tabular-nums}
+  .sl input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:999px;
+    background:rgba(255,255,255,.2);outline:none}
+  .sl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;
+    border-radius:50%;background:#38bdf8;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);border:3px solid #fff}
+  .sl input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#38bdf8;
+    cursor:pointer;border:3px solid #fff}
+  .sl-hint{font-size:10px;opacity:.55;margin-top:4px}
+
+  .gate-chips{display:flex;gap:8px;margin-bottom:12px}
+  .chip{flex:1;border-radius:9px;padding:9px;text-align:center;font-size:10.5px;font-weight:750}
+  .chip.pass{background:rgba(34,197,94,.22);color:#86efac;border:1.5px solid rgba(134,239,172,.45)}
+  .chip.fail{background:rgba(239,68,68,.22);color:#fca5a5;border:1.5px solid rgba(252,165,165,.45)}
+  .chip .cv{display:block;font-size:15px;font-weight:850;margin-top:2px}
+  .rrow{display:flex;justify-content:space-between;font-size:12px;padding:6px 0;
+        border-bottom:1px dashed rgba(255,255,255,.14);gap:8px}
+  .rrow:last-of-type{border:none}
+  .rrow span:first-child{opacity:.72}
+  .rrow span:last-child{font-weight:750;font-variant-numeric:tabular-nums;text-align:right}
+  .cms-out{margin-top:11px;border-radius:11px;padding:13px;text-align:center}
+  .cms-out.ok{background:rgba(34,197,94,.18);border:1.5px solid rgba(134,239,172,.4)}
+  .cms-out.no{background:rgba(239,68,68,.18);border:1.5px solid rgba(252,165,165,.4)}
+  .cms-lb{font-size:10px;text-transform:uppercase;letter-spacing:.6px;opacity:.8}
+  .cms-vl{font-size:25px;font-weight:850;margin-top:2px;font-variant-numeric:tabular-nums}
+  .cms-out.ok .cms-vl{color:#86efac}.cms-out.no .cms-vl{color:#fca5a5}
+  .cms-nt{font-size:10.5px;opacity:.8;margin-top:4px;line-height:1.5}
+  .btn-reset{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;
+    padding:6px 13px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
+
+  /* thang bậc com */
+  .ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .lad{border-radius:12px;padding:14px;text-align:center;border:2px solid #e2e8f0;background:#f8fafc}
+  .lad.on{border-color:#16a34a;background:#f0fdf4;box-shadow:0 4px 14px rgba(22,163,74,.15)}
+  .lad .lr{font-size:10.5px;color:#6b7280;font-weight:700}
+  .lad .lp{font-size:24px;font-weight:850;margin:4px 0 2px}
+  .lad.on .lp{color:#15803d}
+  .lad.zero .lp{color:#b91c1c}
+  .lad .ln{font-size:10px;color:#9aa2b8}
+
+  .lev{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .lv{border-radius:13px;padding:16px;text-align:center;border:2px solid #bbf7d0;background:#f0fdf4}
+  .lv .lt{font-size:11px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+  .lv .lval{font-size:20px;font-weight:850;color:#15803d;margin:5px 0 2px;font-variant-numeric:tabular-nums}
+  .lv .ln{font-size:11px;color:#6b7280;line-height:1.4}
+  .lv.risk{border-color:#fecaca;background:#fef2f2}
+  .lv.risk .lval{color:#b91c1c}
+
+  .warns{display:grid;gap:11px}
+  .wn{border-radius:12px;padding:14px 16px;font-size:12.5px;border-left:5px solid}
+  .wn.red{background:#fef2f2;border-color:#dc2626}
+  .wn.amber{background:#fffbeb;border-color:#f59e0b}
+  .wn.blue{background:#eff6ff;border-color:#3b82f6}
+  .wn.green{background:#f0fdf4;border-color:#16a34a}
+  .wn .wt{font-weight:800;margin-bottom:4px}
+  .wn.red .wt{color:#b91c1c}.wn.amber .wt{color:#b45309}
+  .wn.blue .wt{color:#1d4ed8}.wn.green .wt{color:#15803d}
+  .wn .wb{color:#374151}
+
+  .rules{counter-reset:r}
+  .ri{display:flex;gap:12px;padding:11px 0;border-bottom:1px dashed #e8eaf2;font-size:12.5px}
+  .ri:last-child{border:none}
+  .ri .n{counter-increment:r;flex-shrink:0;width:25px;height:25px;border-radius:8px;background:#0369a1;
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+  .ri .n:before{content:counter(r)}
+  .ri .rh{font-weight:750;margin-bottom:2px}
+  .ri .rd{color:#4b5563;font-size:12px}
+
+  .foot{text-align:center;font-size:11px;color:#8b90a3;padding:14px 0 30px}
+
+  @media(max-width:768px){
+    body{padding:11px}
+    .hero{padding:18px;border-radius:16px}
+    .hero h1{font-size:17px}
+    .hero-kpis{grid-template-columns:repeat(2,1fr);gap:8px}
+    .hk:first-child{grid-column:span 2}.hk .val{font-size:15px}
+    .sec{padding:16px 15px;border-radius:14px}
+    .sec-sub{margin-left:0}
+    .mv,.calc-in,.lev{grid-template-columns:1fr}
+    .ladder{grid-template-columns:repeat(2,1fr)}
+    table thead{display:none}
+    table tbody tr{display:block;border:1.5px solid #e8eaf2;border-radius:11px;
+                   margin-bottom:9px;padding:9px 11px}
+    table td{display:flex;justify-content:space-between;gap:12px;border:none;padding:5px 0;text-align:right}
+    table td:before{content:attr(data-l);font-weight:700;color:#6b7280;font-size:10.5px;
+                    text-transform:uppercase;text-align:left;flex-shrink:0}
+    tr.total td{background:transparent}
+  }
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="gbox">
+    <div style="font-size:38px;margin-bottom:6px">🔒</div>
+    <div class="gt1">Kế hoạch tháng 9 · KNB</div>
+    <div class="gt2">Tài liệu nội bộ — nhập mật khẩu để xem</div>
+    <input type="password" class="gin" id="gpw" placeholder="Mật khẩu" onkeydown="if(event.key==='Enter')doGate()">
+    <button class="gbtn" onclick="doGate()">Xem kế hoạch</button>
+    <div class="gerr" id="gerr"></div>
+  </div>
+</div>
+
+<div id="main">
+<div class="page">
+
+  <div class="hero">
+    <h1>📅 KẾ HOẠCH THÁNG 9 · KNB</h1>
+    <div class="sub">Chỉ tiêu từng người · khung hoa hồng · các ngưỡng ràng buộc</div>
+    <div class="hero-kpis">
+      <div class="hk">
+        <div class="lbl">Ngân sách ads</div>
+        <div class="val money">340.529.724đ</div>
+        <div class="note">11.350.991đ/ngày toàn team</div>
+      </div>
+      <div class="hk">
+        <div class="lbl">GMV mục tiêu</div>
+        <div class="val money">1.190.414.342đ</div>
+        <div class="note">39.680.478đ/ngày · 99 đơn/ngày</div>
+      </div>
+      <div class="hk warn">
+        <div class="lbl">CPQC kế hoạch</div>
+        <div class="val">28,6%</div>
+        <div class="note">ROAS gộp 3,50× · cổng là 35%</div>
+      </div>
+      <div class="hk warn">
+        <div class="lbl">Hoàn kế hoạch</div>
+        <div class="val">26%</div>
+        <div class="note">cổng là 30% — chỉ dư 4 điểm</div>
+      </div>
+      <div class="hk good">
+        <div class="lbl">DTTCCN tính CMS</div>
+        <div class="val money">879.350.501đ</div>
+        <div class="note">CM 382.105.620đ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. VIEW THEO MARKETER -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#0f172a">👤</div><h2>1. Chỉ tiêu &amp; CMS theo từng người</h2></div>
+    <div class="sec-sub">Chọn tên để xem chỉ tiêu riêng, rồi kéo thử GMV / CPQC / hoàn để biết CMS của mình</div>
+
+    <div class="who-pills" id="pills"></div>
+
+    <div class="mv">
+      <!-- CHỈ TIÊU -->
+      <div class="plan-card">
+        <div class="pc-name" id="pName">—</div>
+        <div class="pc-sku" id="pSku">—</div>
+        <div class="pc-row"><span>Ngân sách tháng</span><span class="money" id="pNs">—</span></div>
+        <div class="pc-row"><span>GMV mục tiêu</span><span class="money" id="pGmv">—</span></div>
+        <div class="pc-row"><span>Số đơn</span><span id="pDon">—</span></div>
+        <div class="pc-row"><span>CPQC kế hoạch</span><span id="pCpqc">—</span></div>
+        <div class="pc-row"><span>CPA trần</span><span class="money" id="pCpa">—</span></div>
+        <div class="pc-row"><span>AOV sàn</span><span class="money" id="pAov">—</span></div>
+        <div class="pc-row"><span>ROAS sàn</span><span id="pRoas">—</span></div>
+        <div class="pc-row"><span>Đơn hoàn tối đa</span><span id="pHoan">—</span></div>
+        <div class="pc-day" id="pDay">—</div>
+      </div>
+
+      <!-- MÁY TÍNH -->
+      <div class="calc">
+        <div class="calc-h">🎚 Kéo thử để ra CMS</div>
+        <div class="calc-s">GMV là kế hoạch — cách chạy tới đó tuỳ mỗi người. Hai cổng thì không thương lượng.</div>
+        <div class="calc-in">
+          <div>
+            <div class="sl">
+              <div class="sl-top"><span class="sl-lb">💵 GMV đạt được</span><span class="sl-vl" id="vGmv">—</span></div>
+              <input type="range" id="sGmv" min="0" max="1000" step="5" value="371">
+              <div class="sl-hint" id="hGmv">—</div>
+            </div>
+            <div class="sl">
+              <div class="sl-top"><span class="sl-lb">📣 CPQC (chi phí QC / GMV)</span><span class="sl-vl" id="vCpqc">—</span></div>
+              <input type="range" id="sCpqc" min="150" max="450" step="5" value="300">
+              <div class="sl-hint" id="hCpqc">—</div>
+            </div>
+            <div class="sl">
+              <div class="sl-top"><span class="sl-lb">📦 Tỷ lệ hoàn</span><span class="sl-vl" id="vHoan">—</span></div>
+              <input type="range" id="sHoan" min="5" max="45" value="28">
+              <div class="sl-hint" id="hHoan">—</div>
+            </div>
+            <button class="btn-reset" onclick="resetCalc()">↺ Về đúng số kế hoạch</button>
+          </div>
+          <div>
+            <div class="gate-chips">
+              <div class="chip" id="chip1">CỔNG · CPQC &lt;35%<span class="cv" id="c1v">—</span></div>
+              <div class="chip" id="chip2">CỔNG · HOÀN &lt;30%<span class="cv" id="c2v">—</span></div>
+            </div>
+            <div class="rrow"><span>Chi phí quảng cáo</span><span id="rNs">—</span></div>
+            <div class="rrow"><span>DTTCCN (sau hoàn)</span><span id="rDt">—</span></div>
+            <div class="rrow"><span>Bậc hoa hồng</span><span id="rBac">—</span></div>
+            <div class="rrow"><span>Cách bậc kế tiếp</span><span id="rNext">—</span></div>
+            <div class="cms-out" id="cmsBox">
+              <div class="cms-lb">CMS nhận được</div>
+              <div class="cms-vl" id="rCms">—</div>
+              <div class="cms-nt" id="rNote">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. KHUNG HOA HỒNG -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#b45309">💰</div><h2>2. Khung hoa hồng — bậc theo GMV, tính trên DTTCCN</h2></div>
+    <div class="sec-sub">GMV quyết định BẬC · số tiền nhân trên DOANH THU SAU HOÀN</div>
+    <div class="ladder" id="ladder">
+      <div class="lad zero" data-t="0"><div class="lr">GMV &lt; 300 triệu</div><div class="lp">0%</div><div class="ln">chưa tới ngưỡng</div></div>
+      <div class="lad" data-t="1"><div class="lr">300 – dưới 500 triệu</div><div class="lp">1,5%</div><div class="ln">× DTTCCN</div></div>
+      <div class="lad" data-t="2"><div class="lr">500 – dưới 800 triệu</div><div class="lp">2,0%</div><div class="ln">× DTTCCN</div></div>
+      <div class="lad" data-t="3"><div class="lr">từ 800 triệu</div><div class="lp">2,5%</div><div class="ln">× DTTCCN</div></div>
+    </div>
+
+    <div class="wn amber" style="margin-top:14px">
+      <div class="wt">🎁 Thưởng tối ưu quảng cáo — CPQC dưới 28%</div>
+      <div class="wb">Ngoài bậc trên, nếu <b>CPQC &lt; 28%</b> thì được cộng thêm <b>1–2%</b> tuỳ kết quả thực tế (do công ty duyệt cuối kỳ). Đây là phần thưởng cho việc tối ưu tỷ lệ quảng cáo, không phải cam kết cố định. Tỷ lệ hoàn trước mắt giữ nguyên cổng cứng <b>&lt; 30%</b>.</div>
+    </div>
+
+    <div class="sec-sub" style="margin:18px 0 10px 0">CMS dự kiến nếu mọi người chạy đúng kế hoạch</div>
+    <table>
+      <thead><tr>
+        <th>Người</th><th class="num">GMV kế hoạch</th><th class="num">CPQC</th>
+        <th class="num">DTTCCN</th><th class="num">Bậc</th><th class="num">CMS</th><th class="num">Cách bậc kế tiếp</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td data-l="Người"><span class="who">LONGDMV</span></td>
+          <td class="num money" data-l="GMV">371.140.000đ</td>
+          <td class="num" data-l="CPQC">30,0%</td>
+          <td class="num money" data-l="DTTCCN">267.220.800đ</td>
+          <td class="num" data-l="Bậc"><span class="badge bg">1,5%</span></td>
+          <td class="num money" data-l="CMS"><b>4.008.312đ</b></td>
+          <td class="num money" data-l="Cách bậc kế">+128.860.000đ</td>
+        </tr>
+        <tr>
+          <td data-l="Người"><span class="who">OANHPTK</span></td>
+          <td class="num money" data-l="GMV">327.341.667đ</td>
+          <td class="num" data-l="CPQC">26,7% <span class="badge bg">có thưởng</span></td>
+          <td class="num money" data-l="DTTCCN">247.634.750đ</td>
+          <td class="num" data-l="Bậc"><span class="badge bg">1,5%</span></td>
+          <td class="num money" data-l="CMS"><b>3.714.521đ</b></td>
+          <td class="num money" data-l="Cách bậc kế">+172.658.333đ</td>
+        </tr>
+        <tr>
+          <td data-l="Người"><span class="who">KHANH</span></td>
+          <td class="num money" data-l="GMV">283.800.000đ</td>
+          <td class="num" data-l="CPQC">30,0%</td>
+          <td class="num money" data-l="DTTCCN">212.850.000đ</td>
+          <td class="num" data-l="Bậc"><span class="badge br">0%</span></td>
+          <td class="num money" data-l="CMS"><b>0đ</b></td>
+          <td class="num money" data-l="Cách bậc kế"><span class="badge by">chỉ +16.200.000đ</span></td>
+        </tr>
+        <tr>
+          <td data-l="Người"><span class="who">HUYTT</span></td>
+          <td class="num money" data-l="GMV">148.485.175đ</td>
+          <td class="num" data-l="CPQC">28,0%</td>
+          <td class="num money" data-l="DTTCCN">106.909.326đ</td>
+          <td class="num" data-l="Bậc"><span class="badge br">0%</span></td>
+          <td class="num money" data-l="CMS"><b>0đ</b></td>
+          <td class="num money" data-l="Cách bậc kế">+151.514.825đ</td>
+        </tr>
+        <tr>
+          <td data-l="Người"><span class="who">LAMDQ</span></td>
+          <td class="num money" data-l="GMV">59.647.500đ</td>
+          <td class="num" data-l="CPQC">25,0% <span class="badge bg">có thưởng</span></td>
+          <td class="num money" data-l="DTTCCN">44.735.625đ</td>
+          <td class="num" data-l="Bậc"><span class="badge br">0%</span></td>
+          <td class="num money" data-l="CMS"><b>0đ</b></td>
+          <td class="num money" data-l="Cách bậc kế">+240.352.500đ</td>
+        </tr>
+        <tr class="total">
+          <td data-l="Tổng">TỔNG TEAM</td>
+          <td class="num money" data-l="GMV">1.190.414.342đ</td>
+          <td class="num" data-l="CPQC">28,6%</td>
+          <td class="num money" data-l="DTTCCN">879.350.501đ</td>
+          <td class="num" data-l="Bậc">—</td>
+          <td class="num money" data-l="CMS">7.722.833đ</td>
+          <td class="num" data-l="Cách bậc kế">2/5 người có com</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3. BẢNG CHỈ TIÊU TỔNG -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#0369a1">🎯</div><h2>3. Chỉ tiêu theo dòng sản phẩm</h2></div>
+    <div class="sec-sub">ROAS thực nhận = ROAS gộp × (1 − tỷ lệ hoàn) — đây mới là con số quyết định</div>
+    <table>
+      <thead><tr>
+        <th>Người · Sản phẩm</th><th class="num">Ngân sách</th><th class="num">GMV</th>
+        <th class="num">ROAS gộp</th><th class="num">Hoàn</th><th class="num">ROAS thực</th>
+        <th class="num">Đơn</th><th class="num">CM</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td data-l="Người"><span class="who">HUYTT</span> · YAM BEEF NOODLES<div class="mut">2.000 sp · AOV 275.440đ · ABS 3,71</div></td>
+          <td class="num money" data-l="Ngân sách">41.575.849đ</td>
+          <td class="num money" data-l="GMV">148.485.175đ</td>
+          <td class="num" data-l="ROAS gộp"><span class="badge by">3,57×</span></td>
+          <td class="num" data-l="Hoàn">28%</td>
+          <td class="num" data-l="ROAS thực"><span class="badge by">2,57×</span></td>
+          <td class="num" data-l="Đơn">539</td>
+          <td class="num money" data-l="CM">46.095.477đ</td>
+        </tr>
+        <tr>
+          <td data-l="Người"><span class="who">KHANH</span> · AUTHENTIC HONEYCOMB<div class="mut">800 sp · AOV 1.021.680đ · ABS 2,88</div></td>
+          <td class="num money" data-l="Ngân sách">85.140.000đ</td>
+          <td class="num money" data-l="GMV">283.800.000đ</td>
+          <td class="num" data-l="ROAS gộp"><span class="badge by">3,33×</span></td>
+          <td class="num" data-l="Hoàn">25%</td>
+          <td class="num" data-l="ROAS thực"><span class="badge by">2,50×</span></td>
+          <td class="num" data-l="Đơn">278</td>
+          <td class="num money" data-l="CM">91.848.167đ</td>
+        </tr>
+        <tr>
+          <td data-l="Người"><span class="who">OANHPTK</span> · AUTHENTIC HONEYCOMB<div class="mut">300 sp · AOV 1.021.680đ · ABS 2,88</div></td>
+          <td class="num money" data-l="Ngân sách">21.285.000đ</td>
+          <td class="num money" data-l="GMV">106.425.000đ</td>
+          <td class="num" data-l="ROAS gộp"><span class="badge bg">5,00×</span></td>
+          <td class="num" data-l="Hoàn">23%</td>
+          <td class="num" data-l="ROAS thực"><span class="badge bg">3,85×</span></td>
+          <td class="num" data-l="Đơn">104</td>
+          <td class="num money" data-l="CM">45.298.413đ</td>
+        </tr>
+        <tr>
+          <td data-l="Người"><span class="who">LAMDQ</span> · MOCHI DURIAN<div class="mut">338 sp · AOV 318.120đ · ABS 1,80</div></td>
+          <td class="num money" data-l="Ngân sách">14.911.875đ</td>
+          <td class="num money" data-l="GMV">59.647.500đ</td>
+          <td class="num" data-l="ROAS gộp"><span class="badge bg">4,00×</span></td>
+          <td class="num" data-l="Hoàn">25%</td>
+          <td class="num" data-l="ROAS thực"><span class="badge bg">3,00×</span></td>
+          <td class="num" data-l="Đơn">188</td>
+          <td class="num money" data-l="CM">21.370.275đ</td>
+        </tr>
+        <tr>
+          <td data-l="Người"><span class="who">OANHPTK</span> · MOCHI DURIAN<div class="mut">1.250 sp · AOV 318.120đ · ABS 1,80</div></td>
+          <td class="num money" data-l="Ngân sách">66.275.000đ</td>
+          <td class="num money" data-l="GMV">220.916.667đ</td>
+          <td class="num" data-l="ROAS gộp"><span class="badge by">3,33×</span></td>
+          <td class="num" data-l="Hoàn">25%</td>
+          <td class="num" data-l="ROAS thực"><span class="badge by">2,50×</span></td>
+          <td class="num" data-l="Đơn">694</td>
+          <td class="num money" data-l="CM">69.760.208đ</td>
+        </tr>
+        <tr>
+          <td data-l="Người"><span class="who">LONGDMV</span> · MOCHI DURIAN<div class="mut">2.100 sp · AOV 318.120đ · ABS 1,80</div></td>
+          <td class="num money" data-l="Ngân sách">111.342.000đ</td>
+          <td class="num money" data-l="GMV">371.140.000đ</td>
+          <td class="num" data-l="ROAS gộp"><span class="badge by">3,33×</span></td>
+          <td class="num" data-l="Hoàn">28%</td>
+          <td class="num" data-l="ROAS thực"><span class="badge br">2,40×</span></td>
+          <td class="num" data-l="Đơn">1.167</td>
+          <td class="num money" data-l="CM">107.733.080đ</td>
+        </tr>
+        <tr class="total">
+          <td data-l="Tổng">TỔNG · 6.788 sp</td>
+          <td class="num money" data-l="Ngân sách">340.529.724đ</td>
+          <td class="num money" data-l="GMV">1.190.414.342đ</td>
+          <td class="num" data-l="ROAS gộp">3,50×</td>
+          <td class="num" data-l="Hoàn">26%</td>
+          <td class="num" data-l="ROAS thực">2,58×</td>
+          <td class="num" data-l="Đơn">2.970</td>
+          <td class="num money" data-l="CM">382.105.620đ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 4. ĐÒN BẨY -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#16a34a">⚖️</div><h2>4. Độ nhạy — nơi lời lãi thật sự quyết định</h2></div>
+    <div class="sec-sub">Ba biến số quyết định lãi hay hoà vốn</div>
+    <div class="lev">
+      <div class="lv">
+        <div class="lt">Hạ hoàn 26% → 20%</div>
+        <div class="lval">+60.711.131đ</div>
+        <div class="ln">CM tăng 15,9% mà <b>không tốn thêm đồng quảng cáo nào</b>. Đòn bẩy lớn nhất tháng 9.</div>
+      </div>
+      <div class="lv risk">
+        <div class="lt">CPQC trượt 28,6% → 33%</div>
+        <div class="lval">−44.460.958đ</div>
+        <div class="ln">Giữ nguyên GMV nhưng ads đắt hơn. ROAS rơi 3,50× → 3,03× là mất chừng này.</div>
+      </div>
+      <div class="lv risk">
+        <div class="lt">Mỗi 1 điểm % hoàn</div>
+        <div class="lval">10.118.522đ</div>
+        <div class="ln">Một điểm phần trăm hoàn hơn 10 triệu CM — và có thể làm rớt cổng CMS.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. LUẬT CHƠI -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#0f172a">📋</div><h2>5. Luật chơi tháng 9</h2></div>
+    <div class="sec-sub">Áp dụng cho tất cả, không ngoại lệ</div>
+    <div class="rules">
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Tự kiểm hai cổng vào thứ Hai hằng tuần</div>
+        <div class="rd">Cộng dồn từ đầu tháng: <b>CPQC &lt; 35%</b> và <b>đơn hoàn ÷ đơn chốt &lt; 30%</b>. Phát hiện ngày 8 còn xoay kịp, phát hiện ngày 30 thì mất cả tháng.</div>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Nhìn ROAS thực nhận, không nhìn ROAS trên trình quản lý</div>
+        <div class="rd">Camp báo 3,33× mà hoàn 28% thì thực chất chỉ 2,40×. Mọi quyết định tăng/giảm ngân sách căn theo con số thực.</div>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Xem đủ 5 khung trước khi tăng tiền</div>
+        <div class="rd">30 ngày → 14 → 7 → 3 → hôm qua. Khung ngắn xấu hơn khung dài = chưa phải lúc tăng, kể cả khi số tổng vẫn đẹp.</div>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Tăng xong thì không đụng vào trong 5–7 ngày</div>
+        <div class="rd">Nhóm khách đỉnh phễu cần 7–10 ngày mới chín. Chấm điểm bằng 1–2 ngày đầu rồi hạ ngân sách là cắt đúng lúc khách sắp chuyển đổi.</div>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Trần số camp chạy song song cho mỗi sản phẩm</div>
+        <div class="rd">Camp nhân bản cùng tệp tự đấu giá lẫn nhau, đẩy CPM lên ở tất cả camp. Nhiệt kế: CPM của camp gốc tăng nghĩa là đang tự cạnh tranh.</div>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Hai người không chạy chung một SKU trên cùng một tệp</div>
+        <div class="rd">OANHPTK và KHANH cùng chạy HONEYCOMB, ba người cùng chạy DURIAN. Tách theo kênh hoặc page, loại trừ chéo tệp.</div>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Đặt tên camp đúng cú pháp</div>
+        <div class="rd"><code>KNB - &lt;SẢN PHẨM&gt; - &lt;TÊN MKT&gt; - &lt;mô tả&gt;</code>. Sai là camp biến mất khỏi báo cáo — không có số thì không tính thành tích.</div>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Báo cáo lý do hoàn hằng tuần</div>
+        <div class="rd">Top 3 lý do (không nghe máy / đổi ý / sai địa chỉ) — đo, đừng đoán. Việc này vừa cứu CM vừa giữ cổng CMS.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="foot">KNB Digital · Kế hoạch tháng 9/2026 · lập ngày 25/08/2026</div>
+</div>
+</div>
+
+<script>
+var PW = 'Knb@2610';
+function openGate(){
+  document.getElementById('gate').classList.add('hidden');
+  document.getElementById('main').style.display = 'block';
+}
+function doGate(){
+  if (document.getElementById('gpw').value === PW){
+    try { localStorage.setItem('knb_plan_t9','1'); } catch(e){}
+    openGate();
+  } else {
+    document.getElementById('gerr').textContent = '❌ Mật khẩu không đúng';
+    document.getElementById('gpw').value = '';
+  }
+}
+try { if (localStorage.getItem('knb_plan_t9')==='1') openGate(); } catch(e){}
+
+var PEOPLE = [
+  { id:'LONGDMV', ns:111342000, gmv:371140000, don:1167, hoan:28, cpqc:30.0,
+    sku:'MOCHI DURIAN', cpa:'95.409đ', aov:'318.120đ', roas:'3,33×', nsd:3711400, dond:'38,9' },
+  { id:'OANHPTK', ns:87560000,  gmv:327341667, don:798,  hoan:24, cpqc:26.7,
+    sku:'MOCHI DURIAN + AUTHENTIC HONEYCOMB', cpa:'95.497đ / 204.663đ', aov:'318.120đ / 1.021.680đ', roas:'3,33× / 5,00×', nsd:2918667, dond:'26,6' },
+  { id:'KHANH',   ns:85140000,  gmv:283800000, don:278,  hoan:25, cpqc:30.0,
+    sku:'AUTHENTIC HONEYCOMB', cpa:'306.259đ', aov:'1.021.680đ', roas:'3,33×', nsd:2838000, dond:'9,3' },
+  { id:'HUYTT',   ns:41575849,  gmv:148485175, don:539,  hoan:28, cpqc:28.0,
+    sku:'YAM BEEF NOODLES', cpa:'77.135đ', aov:'275.440đ', roas:'3,57×', nsd:1385862, dond:'18,0' },
+  { id:'LAMDQ',   ns:14911875,  gmv:59647500,  don:188,  hoan:25, cpqc:25.0,
+    sku:'MOCHI DURIAN', cpa:'79.318đ', aov:'318.120đ', roas:'4,00×', nsd:497063, dond:'6,3' }
+];
+var cur = PEOPLE[0];
+
+function vnd(n){ return Math.round(n).toLocaleString('vi-VN') + 'đ'; }
+function pc1(n){ return n.toFixed(1).replace('.',',') + '%'; }
+
+function tier(gmv){
+  if (gmv < 300e6) return { p:0,   i:0, next:300e6 };
+  if (gmv < 500e6) return { p:1.5, i:1, next:500e6 };
+  if (gmv < 800e6) return { p:2.0, i:2, next:800e6 };
+  return { p:2.5, i:3, next:null };
+}
+
+function buildPills(){
+  var box = document.getElementById('pills');
+  box.innerHTML = '';
+  PEOPLE.forEach(function(p, i){
+    var b = document.createElement('button');
+    b.className = 'wp' + (i===0 ? ' on' : '');
+    b.textContent = p.id;
+    b.onclick = function(){
+      cur = p;
+      var all = box.querySelectorAll('.wp');
+      for (var j=0;j<all.length;j++) all[j].classList.remove('on');
+      b.classList.add('on');
+      resetCalc();
+    };
+    box.appendChild(b);
+  });
+}
+
+function fillPlan(){
+  document.getElementById('pName').textContent = cur.id;
+  document.getElementById('pSku').textContent  = cur.sku;
+  document.getElementById('pNs').textContent   = vnd(cur.ns);
+  document.getElementById('pGmv').textContent  = vnd(cur.gmv);
+  document.getElementById('pDon').textContent  = cur.don.toLocaleString('vi-VN') + ' đơn';
+  document.getElementById('pCpqc').textContent = pc1(cur.cpqc);
+  document.getElementById('pCpa').textContent  = cur.cpa;
+  document.getElementById('pAov').textContent  = cur.aov;
+  document.getElementById('pRoas').textContent = cur.roas;
+  document.getElementById('pHoan').textContent = Math.floor(cur.don*0.3) + ' / ' + cur.don + ' đơn';
+  document.getElementById('pDay').innerHTML =
+    'Mỗi ngày phải làm<br><b>' + vnd(cur.nsd) + '</b> ngân sách · <b>' + cur.dond + ' đơn</b>';
+}
+
+function resetCalc(){
+  document.getElementById('sGmv').value  = Math.round(cur.gmv/1e6/5)*5;
+  document.getElementById('sCpqc').value = Math.round(cur.cpqc*10/5)*5;
+  document.getElementById('sHoan').value = cur.hoan;
+  fillPlan();
+  render();
+}
+
+function render(){
+  var gmv  = +document.getElementById('sGmv').value * 1e6;
+  var cpqc = +document.getElementById('sCpqc').value / 10;
+  var h    = +document.getElementById('sHoan').value;
+
+  var ns  = gmv * cpqc / 100;
+  var dt  = gmv * (1 - h/100);
+  var t   = tier(gmv);
+  var p1  = cpqc < 35;
+  var p2  = h < 30;
+  var bonus = cpqc < 28;
+  var cms = (p1 && p2) ? dt * t.p / 100 : 0;
+
+  document.getElementById('vGmv').textContent  = vnd(gmv);
+  document.getElementById('vCpqc').textContent = pc1(cpqc);
+  document.getElementById('vHoan').textContent = h + '%';
+  document.getElementById('hGmv').textContent  = 'Kế hoạch ' + vnd(cur.gmv);
+  document.getElementById('hCpqc').textContent = 'Kế hoạch ' + pc1(cur.cpqc) + ' · dưới 28% được thưởng thêm 1–2%';
+  document.getElementById('hHoan').textContent = 'Kế hoạch ' + cur.hoan + '% · tối đa ' + Math.floor(cur.don*0.3) + '/' + cur.don + ' đơn';
+
+  var c1 = document.getElementById('chip1'), c2 = document.getElementById('chip2');
+  c1.className = 'chip ' + (p1 ? 'pass' : 'fail');
+  c2.className = 'chip ' + (p2 ? 'pass' : 'fail');
+  document.getElementById('c1v').textContent = pc1(cpqc) + (p1 ? ' ✓' : ' ✕');
+  document.getElementById('c2v').textContent = h + '%' + (p2 ? ' ✓' : ' ✕');
+
+  document.getElementById('rNs').textContent  = vnd(ns);
+  document.getElementById('rDt').textContent  = vnd(dt);
+  document.getElementById('rBac').textContent = t.p === 0 ? '0% — chưa tới ngưỡng' : pc1(t.p) + ' × DTTCCN';
+  document.getElementById('rNext').textContent = t.next
+      ? 'cần thêm ' + vnd(t.next - gmv) + ' GMV'
+      : 'đã ở bậc cao nhất';
+
+  var lads = document.querySelectorAll('.lad');
+  for (var i=0;i<lads.length;i++) lads[i].classList.toggle('on', i === t.i && t.p > 0);
+
+  var box = document.getElementById('cmsBox');
+  box.className = 'cms-out ' + ((p1 && p2 && cms > 0) ? 'ok' : 'no');
+  document.getElementById('rCms').textContent = vnd(cms);
+
+  var note;
+  if (!p1 && !p2)      note = 'Trượt cả hai cổng — phải giảm chi phí quảng cáo VÀ giảm hoàn';
+  else if (!p1)        note = 'Trượt cổng CPQC: cần thêm ' + vnd(ns/0.35 - gmv) + ' GMV, hoặc bớt tiêu ' + vnd(ns - gmv*0.35);
+  else if (!p2)        note = 'Trượt cổng hoàn: phải kéo tỷ lệ hoàn xuống dưới 30%';
+  else if (t.p === 0)  note = 'Qua cả hai cổng nhưng GMV chưa tới 300 triệu — cần thêm ' + vnd(t.next - gmv);
+  else {
+    note = 'Qua cả hai cổng · ' + pc1(t.p) + ' × ' + vnd(dt);
+    if (bonus) note += '  🎁 CPQC dưới 28% — có thể được cộng thêm 1–2%: '
+                     + vnd(dt*(t.p+1)/100) + ' – ' + vnd(dt*(t.p+2)/100);
+  }
+  document.getElementById('rNote').textContent = note;
+}
+
+['sGmv','sCpqc','sHoan'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', render);
+});
+buildPills();
+resetCalc();
+</script>
+</body>
+</html>
