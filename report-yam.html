@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YAM BEEF NOODLES · KNB — Lãi thật &amp; kế hoạch nhập 10.000</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Inter',sans-serif;
+       background:#eef0f7;color:#16192b;line-height:1.5;padding:20px;-webkit-text-size-adjust:100%}
+  .page{max-width:1180px;margin:0 auto}
+  .money{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* ===== CỔNG MẬT KHẨU ===== */
+  #gate{position:fixed;inset:0;background:linear-gradient(135deg,#7c2d12,#c2410c 60%,#ea580c);
+        display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+  #gate.hidden{display:none}
+  .gbox{background:#fff;padding:36px 32px;border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.25);
+        width:100%;max-width:360px;text-align:center}
+  .gt1{font-size:19px;font-weight:800;color:#7c2d12;margin-bottom:6px}
+  .gt2{font-size:12.5px;color:#6b7280;margin-bottom:20px}
+  .gin{width:100%;padding:12px 15px;border:2px solid #e2e8f0;border-radius:12px;font-size:15px;
+       font-family:inherit;outline:none}
+  .gin:focus{border-color:#c2410c}
+  .gbtn{width:100%;background:#c2410c;color:#fff;border:none;padding:12px;border-radius:12px;
+        font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:11px}
+  .gbtn:hover{background:#9a3412}
+  .gerr{color:#dc2626;font-size:12px;margin-top:8px;min-height:16px}
+  #main{display:none}
+
+  .hero{background:linear-gradient(135deg,#7c2d12 0%,#c2410c 55%,#ea580c 100%);
+    border-radius:20px;padding:26px 28px;color:#fff;margin-bottom:14px;
+    box-shadow:0 12px 34px rgba(194,65,12,.3)}
+  .hero h1{font-size:22px;font-weight:800;letter-spacing:-.4px}
+  .hero .sub{font-size:12.5px;opacity:.9;margin:6px 0 18px}
+  .hero-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .hk{background:rgba(255,255,255,.13);border-radius:12px;padding:12px 14px;
+      border:1px solid rgba(255,255,255,.18)}
+  .hk .lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:.6px;opacity:.85;margin-bottom:4px}
+  .hk .val{font-size:17px;font-weight:800;line-height:1.15;letter-spacing:-.3px}
+  .hk .note{font-size:10px;opacity:.82;margin-top:4px}
+  .hk.warn .val{color:#fde68a}.hk.good .val{color:#bbf7d0}.hk.bad .val{color:#fecaca}
+
+  .sec{background:#fff;border-radius:16px;padding:22px 24px;margin-bottom:14px;
+       box-shadow:0 2px 10px rgba(22,25,43,.06)}
+  .sec-h{display:flex;align-items:center;gap:10px;margin-bottom:5px}
+  .sec-ic{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;
+          justify-content:center;font-size:14px;color:#fff;flex-shrink:0}
+  .sec-h h2{font-size:16px;font-weight:750;letter-spacing:-.2px}
+  .sec-sub{font-size:12px;color:#6b7280;margin-bottom:16px;margin-left:40px}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;padding:9px 8px;font-size:9.5px;text-transform:uppercase;letter-spacing:.4px;
+     color:#6b7280;border-bottom:2px solid #eceef5;font-weight:700}
+  th.num,td.num{text-align:right}
+  td{padding:10px 8px;border-bottom:1px solid #f3f4f8}
+  tbody tr:last-child td{border-bottom:none}
+  tr.total td{background:#f8fafc;font-weight:800;border-top:2px solid #e2e8f0}
+  tr.pick td{background:#f0fdf4}
+  .badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.5px;font-weight:750}
+  .bg{background:#dcfce7;color:#15803d}.by{background:#fef3c7;color:#b45309}.br{background:#fee2e2;color:#b91c1c}
+  .who{font-weight:750}
+  .mut{color:#9aa2b8;font-size:11px;font-weight:400}
+
+  .alert{border-radius:12px;padding:15px 18px;font-size:13px;border-left:5px solid #dc2626;
+         background:#fef2f2;margin-bottom:14px}
+  .alert b{color:#b91c1c}
+
+  .pace{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:13px}
+  .pc{border-radius:13px;padding:15px;text-align:center;border:2px solid}
+  .pc .pt{font-size:10.5px;color:#6b7280;font-weight:750;text-transform:uppercase;letter-spacing:.4px}
+  .pc .pv{font-size:27px;font-weight:850;margin:4px 0 1px;line-height:1}
+  .pc .pu{font-size:11px;color:#6b7280}
+  .pc .pn{font-size:11px;margin-top:8px;padding-top:7px;border-top:1px dashed #e2e8f0;font-weight:700}
+  .p-r{border-color:#fecaca;background:#fef2f2}.p-r .pv{color:#b91c1c}.p-r .pn{color:#b91c1c}
+  .p-y{border-color:#fde68a;background:#fffbeb}.p-y .pv{color:#b45309}.p-y .pn{color:#b45309}
+  .p-g{border-color:#bbf7d0;background:#f0fdf4}.p-g .pv{color:#15803d}.p-g .pn{color:#15803d}
+
+  .zones{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+  .zn{border-radius:13px;padding:15px;text-align:center;border:2px solid #e2e8f0;background:#f8fafc}
+  .zn .zt{font-size:10.5px;color:#6b7280;font-weight:750;text-transform:uppercase;letter-spacing:.4px}
+  .zn .zv{font-size:20px;font-weight:850;margin:5px 0 2px}
+  .zn .zn2{font-size:11px;color:#6b7280;line-height:1.4}
+  .zn.good{border-color:#bbf7d0;background:#f0fdf4}.zn.good .zv{color:#15803d}
+  .zn.bad{border-color:#fecaca;background:#fef2f2}.zn.bad .zv{color:#b91c1c}
+  .zn.now{border-color:#fde68a;background:#fffbeb}.zn.now .zv{color:#b45309}
+
+  .verdict{border-radius:12px;padding:14px 17px;font-size:12.5px;margin-top:13px}
+  .v-green{background:#f0fdf4;border-left:5px solid #16a34a;color:#334155}
+  .v-blue{background:#f8fafc;border-left:5px solid #0369a1;color:#334155}
+  .v-red{background:#fef2f2;border-left:5px solid #dc2626;color:#374151}
+
+  .rules{counter-reset:r}
+  .ri{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed #e8eaf2;font-size:12.5px}
+  .ri:last-child{border:none}
+  .ri .n{counter-increment:r;flex-shrink:0;width:25px;height:25px;border-radius:8px;background:#c2410c;
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+  .ri .n:before{content:counter(r)}
+  .ri.urgent .n{background:#dc2626}
+  .ri .rh{font-weight:750;margin-bottom:3px}
+  .ri .rd{color:#4b5563;font-size:12px}
+  .ri .rw{display:inline-block;margin-top:5px;font-size:10.5px;font-weight:700;padding:2px 8px;
+          border-radius:6px;background:#f1f5f9;color:#475569}
+
+  .note{font-size:11.5px;color:#6b7280;line-height:1.7;background:#f8fafc;border-radius:12px;
+        padding:14px 17px;border-left:4px solid #cbd5e1}
+  .foot{text-align:center;font-size:11px;color:#8b90a3;padding:14px 0 30px}
+
+  @media(max-width:768px){
+    body{padding:11px}
+    .hero{padding:18px;border-radius:16px}
+    .hero h1{font-size:17px}
+    .hero-kpis{grid-template-columns:repeat(2,1fr);gap:8px}
+    .hk:first-child{grid-column:span 2}.hk .val{font-size:15px}
+    .sec{padding:16px 15px;border-radius:14px}
+    .sec-sub{margin-left:0}
+    .pace,.zones{grid-template-columns:1fr}
+    table thead{display:none}
+    table tbody tr{display:block;border:1.5px solid #e8eaf2;border-radius:11px;
+                   margin-bottom:9px;padding:9px 11px}
+    table td{display:flex;justify-content:space-between;gap:12px;border:none;padding:5px 0;text-align:right}
+    table td:before{content:attr(data-l);font-weight:700;color:#6b7280;font-size:10.5px;
+                    text-transform:uppercase;text-align:left;flex-shrink:0}
+    tr.total td,tr.pick td{background:transparent}
+  }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gbox">
+    <div style="font-size:38px;margin-bottom:6px">🔒</div>
+    <div class="gt1">YAM BEEF NOODLES · KNB</div>
+    <div class="gt2">Tài liệu nội bộ — nhập mật khẩu để xem</div>
+    <input type="password" class="gin" id="gpw" placeholder="Mật khẩu" onkeydown="if(event.key==='Enter')doGate()">
+    <button class="gbtn" onclick="doGate()">Xem báo cáo</button>
+    <div class="gerr" id="gerr"></div>
+  </div>
+</div>
+
+<div id="main">
+<div class="page">
+
+  <div class="hero">
+    <h1>🍜 YAM BEEF NOODLES — Lãi thật &amp; kế hoạch nhập 10.000</h1>
+    <div class="sub">Kỳ 09/06 – 31/08/2026 · marketer HUYTT · Philippines COD · nhập đường biển</div>
+    <div class="hero-kpis">
+      <div class="hk good">
+        <div class="lbl">CM3 tích luỹ tới 31/08</div>
+        <div class="val money">82.454.899đ</div>
+        <div class="note">84 ngày · 2.482 item · 24,9% doanh số</div>
+      </div>
+      <div class="hk">
+        <div class="lbl">Trích 70% nhập hàng</div>
+        <div class="val money">57.718.429đ</div>
+        <div class="note">30% giữ lại vận hành: 24.736.470đ</div>
+      </div>
+      <div class="hk bad">
+        <div class="lbl">Còn phải bơm vốn</div>
+        <div class="val money">148.251.571đ</div>
+        <div class="note">lô 10.000 unit = 205.970.000đ</div>
+      </div>
+      <div class="hk warn">
+        <div class="lbl">Tồn bán được ngay</div>
+        <div class="val">1.712 unit</div>
+        <div class="note">theo FFM · phải kéo đủ 30 ngày</div>
+      </div>
+      <div class="hk">
+        <div class="lbl">Tàu về</div>
+        <div class="val">04/10/2026</div>
+        <div class="note">nếu đặt hôm nay · lead time 30 ngày</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. VIỆC GẤP -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#dc2626">🚨</div><h2>1. Việc gấp nhất — siết ads để hàng đủ cầm cự 30 ngày</h2></div>
+    <div class="sec-sub">Tồn 1.712 unit · tàu về 04/10 · không có lô bay dự phòng</div>
+
+    <div class="alert">
+      Đang chi <b>3,6 triệu ads/ngày</b>, bán ~92 item/ngày → hết hàng <b>22/09</b>, đứt <b>12 ngày</b>.
+      Muốn khít đúng ngày tàu về thì chỉ được bán <b>57 item/ngày</b>, tương đương ads <b>~1,4 triệu/ngày</b>.
+    </div>
+
+    <div class="pace">
+      <div class="pc p-r">
+        <div class="pt">Nhịp hiện tại</div>
+        <div class="pv">92</div>
+        <div class="pu">item/ngày · ads 3,6tr · CPQC 43%</div>
+        <div class="pn">Hết hàng 22/09 — đứt 12 ngày</div>
+      </div>
+      <div class="pc p-y">
+        <div class="pt">Trung bình 21 ngày</div>
+        <div class="pv">66</div>
+        <div class="pu">item/ngày · ads 1,92tr · CPQC 31%</div>
+        <div class="pn">Hết hàng 30/09 — đứt 4 ngày</div>
+      </div>
+      <div class="pc p-g">
+        <div class="pt">Nhịp cần giữ</div>
+        <div class="pv">57</div>
+        <div class="pu">item/ngày · ads ~1,4tr · CPQC ~26%</div>
+        <div class="pn">Khít đúng ngày tàu về 04/10</div>
+      </div>
+    </div>
+
+    <div class="verdict v-green">
+      <b>Một hành động giải quyết ba việc.</b> Kéo ngân sách từ 3,6tr xuống ~1,4 triệu/ngày thì:
+      ① tồn 1.712 kéo đủ 30 ngày, <b>không đứt hàng</b> mà không cần lô bay ·
+      ② CPQC rơi từ 43% về ~26%, <b>lãi thêm khoảng 14 triệu</b> trên chính 1.712 unit này ·
+      ③ dòng tiền tháng 9 dôi ra <b>~66 triệu tiền ads chưa phải chi</b>, dùng luôn cho vốn nhập hàng.
+    </div>
+  </div>
+
+  <!-- 2. LÃI THẬT -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#16a34a">💰</div><h2>2. Lãi thật CM3 — hai giai đoạn giá vốn</h2></div>
+    <div class="sec-sub">CM3 = doanh số − quảng cáo − giá vốn − chi phí vận hành</div>
+    <table>
+      <thead><tr>
+        <th>Chỉ số</th>
+        <th class="num">Trước B1G1<br><span class="mut">09/06–07/08 · 60 ngày</span></th>
+        <th class="num">Sau B1G1<br><span class="mut">08/08–31/08 · 24 ngày</span></th>
+        <th class="num">Cộng dồn<br><span class="mut">84 ngày</span></th>
+      </tr></thead>
+      <tbody>
+        <tr><td data-l="Item bán ra">Item bán ra</td><td class="num" data-l="Trước">1.332</td><td class="num" data-l="Sau">1.150</td><td class="num" data-l="Cộng dồn"><b>2.482</b></td></tr>
+        <tr><td data-l="Doanh số">Doanh số</td><td class="num money" data-l="Trước">231.201.900đ</td><td class="num money" data-l="Sau">100.446.750đ</td><td class="num money" data-l="Cộng dồn"><b>331.648.650đ</b></td></tr>
+        <tr><td data-l="DS/item">Doanh số mỗi item</td><td class="num money" data-l="Trước">173.575đ</td><td class="num money" data-l="Sau">87.345đ</td><td class="num" data-l="Cộng dồn">—</td></tr>
+        <tr><td data-l="Quảng cáo">− Quảng cáo</td><td class="num money" data-l="Trước">84.619.895đ <span class="badge br">36,6%</span></td><td class="num money" data-l="Sau">33.147.428đ <span class="badge by">33,0%</span></td><td class="num money" data-l="Cộng dồn">117.767.323đ <span class="badge br">35,5%</span></td></tr>
+        <tr><td data-l="Giá vốn">− Giá vốn hàng</td><td class="num money" data-l="Trước">30.172.464đ</td><td class="num money" data-l="Sau">23.686.550đ</td><td class="num money" data-l="Cộng dồn">53.859.014đ <span class="mut">16,2%</span></td></tr>
+        <tr><td data-l="Vận hành">− Chi phí vận hành</td><td class="num money" data-l="Trước">55.447.164đ</td><td class="num money" data-l="Sau">22.120.250đ</td><td class="num money" data-l="Cộng dồn">77.567.414đ <span class="mut">23,4%</span></td></tr>
+        <tr class="total"><td data-l="CM3">CM3</td><td class="num money" data-l="Trước">60.962.377đ <span class="badge bg">26,4%</span></td><td class="num money" data-l="Sau">21.492.522đ <span class="badge by">21,4%</span></td><td class="num money" data-l="Cộng dồn">82.454.899đ <span class="badge bg">24,9%</span></td></tr>
+        <tr><td data-l="CM3/item">CM3 mỗi item</td><td class="num money" data-l="Trước">45.767đ</td><td class="num money" data-l="Sau">18.689đ</td><td class="num" data-l="Cộng dồn">—</td></tr>
+        <tr><td data-l="CM3/ngày">CM3 mỗi ngày</td><td class="num money" data-l="Trước">1.016.040đ</td><td class="num money" data-l="Sau">895.522đ</td><td class="num" data-l="Cộng dồn">—</td></tr>
+        <tr><td data-l="ABS">ABS (item/đơn)</td><td class="num" data-l="Trước">1,95</td><td class="num" data-l="Sau">4,22</td><td class="num" data-l="Cộng dồn">—</td></tr>
+      </tbody>
+    </table>
+    <div class="verdict v-blue">
+      <b>Đọc bảng này thế nào.</b> Sau Buy 1 Get 1, bán nhanh gấp đôi (47,9 item/ngày so với 22,2) và CPQC tốt hơn 3,6 điểm.
+      Đổi lại doanh số mỗi item giảm đúng một nửa vì tặng kèm, nên giá vốn chiếm tỉ trọng cao hơn và biên lãi mỏng đi 5 điểm.
+      Con số cần theo dõi hằng tuần là <b>CM3 mỗi ngày</b> — thước đo duy nhất gộp được cả tốc độ bán lẫn biên lợi nhuận.
+    </div>
+  </div>
+
+  <!-- 3. VỐN -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#0369a1">🧮</div><h2>3. Vốn cho lô 10.000 — còn phải bơm bao nhiêu</h2></div>
+    <div class="sec-sub">Trích 70% CM3 tích luỹ vào vốn hàng · 30% giữ lại chi vận hành</div>
+    <table>
+      <thead><tr><th>Khoản</th><th class="num">Số tiền</th><th class="num">Ghi chú</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Khoản">Vốn hàng cần chi</td><td class="num money" data-l="Số tiền">205.970.000đ</td><td class="num" data-l="Ghi chú">10.000 × 20.597đ</td></tr>
+        <tr><td data-l="Khoản">Nguồn tự có — 70% CM3 tới 31/08</td><td class="num money" data-l="Số tiền">− 57.718.429đ</td><td class="num" data-l="Ghi chú">tự tài trợ 28,0%</td></tr>
+        <tr class="total"><td data-l="Khoản">CÒN PHẢI BƠM — trả tiền ngay tuần này</td><td class="num money" data-l="Số tiền">148.251.571đ</td><td class="num" data-l="Ghi chú">72,0% vốn lô</td></tr>
+        <tr><td data-l="Khoản">Cộng 70% CM3 sinh ra trong tháng 9</td><td class="num money" data-l="Số tiền">− 25.750.000đ</td><td class="num" data-l="Ghi chú">khi bán nốt 1.712 tồn</td></tr>
+        <tr class="pick"><td data-l="Khoản"><b>CÒN PHẢI BƠM — trả tiền cuối tháng 9</b></td><td class="num money" data-l="Số tiền"><b>122.501.571đ</b></td><td class="num" data-l="Ghi chú">59,5% vốn lô</td></tr>
+      </tbody>
+    </table>
+    <div class="verdict v-red">
+      <b>Lô này không tự tài trợ được.</b> 84 ngày bán mới tích được 82,45 triệu CM3; trích 70% ra chỉ đủ <b>28%</b> vốn lô hàng.
+      <br><br>
+      <b>Việc làm ngay để giảm số phải bơm:</b> hỏi nhà cung cấp cho trả <b>50% khi đặt, 50% khi hàng lên tàu</b>.
+      Kéo được 30 ngày là số phải bơm rơi từ 148,3 triệu xuống <b>122,5 triệu</b> — giảm gần 26 triệu mà không tốn gì.
+      <br><br>
+      <b>Tiền quay lại khi nào:</b> ở nhịp 2,0tr ads/ngày, lô 10.000 tạo 230,6 triệu CM3 trong 122 ngày (1,89 triệu/ngày).
+      Hoàn đủ 206 triệu vốn hàng sau ~109 ngày kể từ ngày bắt đầu bán; cộng 30 ngày chờ tàu thì <b>vòng đời vốn ~139 ngày</b>.
+    </div>
+  </div>
+
+  <!-- 4. KỊCH BẢN -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#7c3aed">🎯</div><h2>4. Chọn nhịp ads cho lô 10.000</h2></div>
+    <div class="sec-sub">Giữ nguyên doanh số/item 87.345đ · giá vốn 20.597đ · vận hành 19.235đ · chỉ đổi mức chi ads</div>
+    <table>
+      <thead><tr>
+        <th>Kịch bản</th><th class="num">Ads/ngày</th><th class="num">CPQC</th><th class="num">Item/ngày</th>
+        <th class="num">Số ngày bán</th><th class="num">Tổng ads</th><th class="num">CM3</th><th class="num">%CM3</th>
+      </tr></thead>
+      <tbody>
+        <tr><td data-l="Kịch bản">Siết mạnh</td><td class="num" data-l="Ads/ngày">1.700.000đ</td><td class="num" data-l="CPQC">26,0%</td><td class="num" data-l="Item/ngày">75</td><td class="num" data-l="Số ngày">134</td><td class="num money" data-l="Tổng ads">227.100.000đ</td><td class="num money" data-l="CM3">248.000.000đ</td><td class="num" data-l="%CM3">28,4%</td></tr>
+        <tr class="pick"><td data-l="Kịch bản"><b>Siết vừa — ĐỀ XUẤT</b></td><td class="num" data-l="Ads/ngày"><b>2.000.000đ</b></td><td class="num" data-l="CPQC">28,0%</td><td class="num" data-l="Item/ngày">82</td><td class="num" data-l="Số ngày">122</td><td class="num money" data-l="Tổng ads">244.600.000đ</td><td class="num money" data-l="CM3"><b>230.600.000đ</b></td><td class="num" data-l="%CM3">26,4%</td></tr>
+        <tr><td data-l="Kịch bản">Trung bình</td><td class="num" data-l="Ads/ngày">2.400.000đ</td><td class="num" data-l="CPQC">30,0%</td><td class="num" data-l="Item/ngày">92</td><td class="num" data-l="Số ngày">109</td><td class="num money" data-l="Tổng ads">262.000.000đ</td><td class="num money" data-l="CM3">213.100.000đ</td><td class="num" data-l="%CM3">24,4%</td></tr>
+        <tr><td data-l="Kịch bản">Giữ nhịp hiện tại</td><td class="num" data-l="Ads/ngày">2.900.000đ</td><td class="num" data-l="CPQC">33,0%</td><td class="num" data-l="Item/ngày">101</td><td class="num" data-l="Số ngày">99</td><td class="num money" data-l="Tổng ads">288.200.000đ</td><td class="num money" data-l="CM3">186.900.000đ</td><td class="num" data-l="%CM3">21,4%</td></tr>
+      </tbody>
+    </table>
+    <div class="verdict v-green">
+      <b>Vì sao chọn 2,0 triệu/ngày chứ không siết mạnh nhất.</b> Mức 1,7tr cho lãi cao nhất (248,0 triệu) nhưng kéo dài 134 ngày —
+      vốn 206 triệu bị giam gần 5 tháng, chưa kể 30 ngày chờ tàu. Mức 2,0tr lãi 230,6 triệu, bán xong trong 122 ngày:
+      chênh lệch lãi chỉ 17,4 triệu nhưng <b>rút ngắn 12 ngày vòng vốn</b>.
+      <br><br>
+      <b>Cột mốc cần nhớ: đừng vượt 2,4 triệu/ngày.</b> Trên mức đó CPQC leo nhanh, mỗi 0,5 triệu chi thêm làm mất khoảng 20 triệu lãi trên cả lô.
+    </div>
+  </div>
+
+  <!-- 5. BẰNG CHỨNG -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#0f172a">⚡</div><h2>5. Bằng chứng cho ngưỡng ngân sách — CPQC theo mức chi</h2></div>
+    <div class="sec-sub">21 ngày gần nhất · cùng sản phẩm, cùng marketer, chỉ khác mức chi mỗi ngày</div>
+    <div class="zones">
+      <div class="zn good">
+        <div class="zt">Vùng hiệu quả</div>
+        <div class="zv">0,8 – 1,7 triệu</div>
+        <div class="zn2">CPQC <b>16–19%</b><br>6 ngày tốt nhất đều nằm ở đây</div>
+      </div>
+      <div class="zn bad">
+        <div class="zt">Vùng kém hiệu quả</div>
+        <div class="zv">trên 2,9 triệu</div>
+        <div class="zn2">CPQC vọt <b>49–57%</b><br>hiệu quả giảm gần 3 lần</div>
+      </div>
+      <div class="zn now">
+        <div class="zt">4 ngày gần nhất</div>
+        <div class="zv">3,6 triệu/ngày</div>
+        <div class="zn2">CPQC trung bình <b>43%</b><br>đang chi vượt vùng hiệu quả</div>
+      </div>
+    </div>
+    <div class="verdict v-blue">
+      Đây không phải suy đoán. Cùng sản phẩm, cùng người chạy: chi 1,5 triệu thì CPQC 18%, chi 3,6 triệu thì CPQC 43%.
+      Con số này là căn cứ cho cả hai quyết định — siết ads tháng 9 để cầm cự, và giữ 2,0 triệu/ngày cho lô mới.
+    </div>
+  </div>
+
+  <!-- 6. VIỆC PHẢI LÀM -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#c2410c">📋</div><h2>6. Việc phải làm — theo thứ tự</h2></div>
+    <div class="sec-sub">Xếp theo mức độ cấp bách</div>
+    <div class="rules">
+      <div class="ri urgent"><div class="n"></div><div>
+        <div class="rh">Hôm nay — kéo ngân sách ads về ~1,4 triệu/ngày</div>
+        <div class="rd">Việc gấp nhất. Đang chi 3,6 triệu. Không kéo xuống thì hết hàng 22/09 và đứt 12 ngày vì không có lô bay. Kéo xuống thì tồn đủ tới 04/10, CPQC về ~26%, lãi thêm ~14 triệu.</div>
+        <span class="rw">Làm ngay · dôi ra ~66 triệu tiền ads</span>
+      </div></div>
+      <div class="ri urgent"><div class="n"></div><div>
+        <div class="rh">Tuần này — chốt nguồn vốn 148 triệu trước khi đặt hàng</div>
+        <div class="rd">70% CM3 tích luỹ chỉ được 57,7 triệu, đủ 28% vốn lô. Phần còn lại phải có tiền tươi. Đây là điều kiện tiên quyết — chưa chốt được nguồn thì chưa đặt hàng.</div>
+        <span class="rw">Điều kiện tiên quyết</span>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Tuần này — chốt lô tàu 10.000 unit và hỏi trả chậm 50/50</div>
+        <div class="rd">Hỏi nhà cung cấp cho trả 50% khi đặt, 50% khi hàng lên tàu. Kéo được 30 ngày thì số phải bơm rơi từ 148,3 xuống 122,5 triệu.</div>
+        <span class="rw">Giảm 26 triệu, không tốn gì</span>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Tháng 9 — test gói khuyến mãi thứ hai và nhắn lại khách cũ</div>
+        <div class="rd">Chạy song song "mua 2 tặng 1" hoặc B1G1 giá cao hơn trong 2 tuần, rồi so CM3 mỗi ngày giữa hai gói. Song song đó, nhắn lại khách vào tuần thứ 4 sau khi giao — tỉ lệ mua lại của YAM là 3,4%, cao nhất trong ba SKU, và khách quay lại chi gần gấp đôi mà không tốn đồng quảng cáo nào.</div>
+        <span class="rw">Mỗi 1 điểm % biên lãi trên lô 10.000 ≈ 9 triệu</span>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Trước khi hàng về — cho marketer thứ hai chạy song song</div>
+        <div class="rd">Toàn bộ sản lượng đang đến từ một người. Nếu HUYTT nghỉ hoặc tài khoản gặp sự cố thì 10.000 unit thành hàng tồn. Rủi ro này quá lớn so với lô hàng 206 triệu.</div>
+        <span class="rw">Giảm rủi ro tập trung</span>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Hằng tuần — báo cáo CM3 mỗi ngày, không chỉ báo ROAS</div>
+        <div class="rd">ROAS và CPQC không nhìn thấy phần giá vốn và chi phí vận hành. Chỉ số chốt hằng tuần của mã này là CM3 mỗi ngày, kèm ads/ngày và item/ngày để biết đang ở vùng nào.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>Cách tính và chỗ cần soát.</b> Doanh số hai giai đoạn được tách bằng cách giải hệ hai phương trình từ tổng doanh số 365,1 triệu
+    và tổng ads 128,8 triệu, với CPQC 36,6% giai đoạn 1 và 33,0% giai đoạn 2 — kết quả doanh số mỗi item 173.575đ và 87.345đ,
+    đúng tỉ lệ 2,0 lần, khớp bản chất Buy 1 Get 1.<br>
+    Chi phí vận hành tính theo 81.172đ mỗi đơn, quy về mỗi item theo ABS từng giai đoạn (41.627đ và 19.235đ).
+    Giá vốn đầy đủ 20.597đ/pack cho lô mới và 22.652đ/pack cho lô 27/07 — sổ nhập ghi 12.439đ là giá chưa gồm vận chuyển.
+    Tồn 1.712 là số bán được ngay theo FFM; sổ kho ghi 2.098 vì tính cả hàng hoàn đang trên đường về.<br>
+    <b>Điểm cần theo dõi:</b> kịch bản 10.000 giả định doanh số mỗi item giữ 87.345đ suốt kỳ. Gói B1G1 mới chạy 24 ngày,
+    chưa đủ dài để biết ABS 4,22 có bền không khi tệp khách bão hoà — nếu ABS tụt thì toàn bộ bảng phải tính lại.
+    Số liệu vận đơn tới 31/08/2026 cho phần CM3, tới 03/09/2026 cho phần CPQC, đã loại đơn Cancel.
+  </div>
+
+  <div class="foot">KNB Digital · YAM BEEF NOODLES · báo cáo lập ngày 04/09/2026</div>
+</div>
+</div>
+
+<script>
+var PW = 'Knb@2610';
+function openGate(){
+  document.getElementById('gate').classList.add('hidden');
+  document.getElementById('main').style.display = 'block';
+}
+function doGate(){
+  if (document.getElementById('gpw').value === PW){
+    try { localStorage.setItem('knb_yam','1'); } catch(e){}
+    openGate();
+  } else {
+    document.getElementById('gerr').textContent = '❌ Mật khẩu không đúng';
+    document.getElementById('gpw').value = '';
+  }
+}
+try { if (localStorage.getItem('knb_yam')==='1') openGate(); } catch(e){}
+</script>
+</body>
+</html>
