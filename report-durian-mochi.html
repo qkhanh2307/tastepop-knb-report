@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOCHI DURIAN · KNB — Báo cáo tháng 8 &amp; quyết định nhập 10.000</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Inter',sans-serif;
+       background:#eef0f7;color:#16192b;line-height:1.5;padding:20px;-webkit-text-size-adjust:100%}
+  .page{max-width:1180px;margin:0 auto}
+  .money{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  #gate{position:fixed;inset:0;background:linear-gradient(135deg,#3b0764,#6d28d9 60%,#8b5cf6);
+        display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+  #gate.hidden{display:none}
+  .gbox{background:#fff;padding:36px 32px;border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.25);
+        width:100%;max-width:360px;text-align:center}
+  .gt1{font-size:19px;font-weight:800;color:#3b0764;margin-bottom:6px}
+  .gt2{font-size:12.5px;color:#6b7280;margin-bottom:20px}
+  .gin{width:100%;padding:12px 15px;border:2px solid #e2e8f0;border-radius:12px;font-size:15px;font-family:inherit;outline:none}
+  .gin:focus{border-color:#6d28d9}
+  .gbtn{width:100%;background:#6d28d9;color:#fff;border:none;padding:12px;border-radius:12px;
+        font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:11px}
+  .gbtn:hover{background:#5b21b6}
+  .gerr{color:#dc2626;font-size:12px;margin-top:8px;min-height:16px}
+  #main{display:none}
+
+  .hero{background:linear-gradient(135deg,#3b0764 0%,#6d28d9 55%,#8b5cf6 100%);
+    border-radius:20px;padding:26px 28px;color:#fff;margin-bottom:14px;
+    box-shadow:0 12px 34px rgba(109,40,217,.3)}
+  .hero h1{font-size:22px;font-weight:800;letter-spacing:-.4px}
+  .hero .sub{font-size:12.5px;opacity:.9;margin:6px 0 18px}
+  .hero-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .hk{background:rgba(255,255,255,.13);border-radius:12px;padding:12px 14px;border:1px solid rgba(255,255,255,.18)}
+  .hk .lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:.6px;opacity:.85;margin-bottom:4px}
+  .hk .val{font-size:17px;font-weight:800;line-height:1.15;letter-spacing:-.3px}
+  .hk .note{font-size:10px;opacity:.82;margin-top:4px}
+  .hk.warn .val{color:#fde68a}.hk.good .val{color:#bbf7d0}.hk.bad .val{color:#fecaca}
+
+  .part{display:flex;align-items:center;gap:12px;margin:22px 0 12px}
+  .part .pn{background:#0f172a;color:#fff;padding:6px 16px;border-radius:999px;font-size:11.5px;
+            font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+  .part .pt{font-size:13px;color:#6b7280;font-weight:600}
+
+  .sec{background:#fff;border-radius:16px;padding:22px 24px;margin-bottom:14px;
+       box-shadow:0 2px 10px rgba(22,25,43,.06)}
+  .sec-h{display:flex;align-items:center;gap:10px;margin-bottom:5px}
+  .sec-ic{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;
+          justify-content:center;font-size:14px;color:#fff;flex-shrink:0}
+  .sec-h h2{font-size:16px;font-weight:750;letter-spacing:-.2px}
+  .sec-sub{font-size:12px;color:#6b7280;margin-bottom:16px;margin-left:40px}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;padding:9px 8px;font-size:9.5px;text-transform:uppercase;letter-spacing:.4px;
+     color:#6b7280;border-bottom:2px solid #eceef5;font-weight:700}
+  th.num,td.num{text-align:right}
+  td{padding:10px 8px;border-bottom:1px solid #f3f4f8}
+  tbody tr:last-child td{border-bottom:none}
+  tr.total td{background:#f8fafc;font-weight:800;border-top:2px solid #e2e8f0}
+  tr.pick td{background:#f0fdf4}
+  tr.warnrow td{background:#fef2f2}
+  .badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.5px;font-weight:750}
+  .bg{background:#dcfce7;color:#15803d}.by{background:#fef3c7;color:#b45309}.br{background:#fee2e2;color:#b91c1c}
+  .mut{color:#9aa2b8;font-size:11px;font-weight:400}
+  .who{font-weight:750}
+
+  .alert{border-radius:12px;padding:15px 18px;font-size:13px;border-left:5px solid #dc2626;
+         background:#fef2f2;margin-bottom:14px}
+  .alert b{color:#b91c1c}
+
+  .verdict{border-radius:12px;padding:14px 17px;font-size:12.5px;margin-top:13px}
+  .v-green{background:#f0fdf4;border-left:5px solid #16a34a;color:#334155}
+  .v-blue{background:#f8fafc;border-left:5px solid #6d28d9;color:#334155}
+  .v-red{background:#fef2f2;border-left:5px solid #dc2626;color:#374151}
+  .v-amber{background:#fffbeb;border-left:5px solid #f59e0b;color:#374151}
+
+  .frames{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:13px}
+  .fr{border-radius:12px;padding:13px;text-align:center;border:2px solid}
+  .fr .ft{font-size:9.5px;color:#6b7280;font-weight:750;text-transform:uppercase;letter-spacing:.4px}
+  .fr .fv{font-size:24px;font-weight:850;margin:4px 0 1px;line-height:1}
+  .fr .fn{font-size:10px;color:#6b7280}
+  .f-r{border-color:#fecaca;background:#fef2f2}.f-r .fv{color:#b91c1c}
+  .f-y{border-color:#fde68a;background:#fffbeb}.f-y .fv{color:#b45309}
+  .f-g{border-color:#bbf7d0;background:#f0fdf4}.f-g .fv{color:#15803d}
+
+  .who-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .wp{background:#f1f5f9;border:1.5px solid #e2e8f0;color:#334155;padding:8px 20px;border-radius:999px;
+      font-size:13px;font-weight:750;cursor:pointer;font-family:inherit;transition:all .15s}
+  .wp:hover{background:#e2e8f0}
+  .wp.on{background:#0f172a;color:#fff;border-color:#0f172a}
+  .mhead{font-size:11.5px;color:#6b7280;margin-bottom:12px}
+
+  .rules{counter-reset:r}
+  .ri{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed #e8eaf2;font-size:12.5px}
+  .ri:last-child{border:none}
+  .ri .n{counter-increment:r;flex-shrink:0;width:25px;height:25px;border-radius:8px;background:#6d28d9;
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+  .ri .n:before{content:counter(r)}
+  .ri.urgent .n{background:#dc2626}
+  .ri .rh{font-weight:750;margin-bottom:3px}
+  .ri .rd{color:#4b5563;font-size:12px}
+  .ri .rw{display:inline-block;margin-top:5px;font-size:10.5px;font-weight:700;padding:2px 8px;
+          border-radius:6px;background:#f1f5f9;color:#475569}
+
+  .note{font-size:11.5px;color:#6b7280;line-height:1.7;background:#f8fafc;border-radius:12px;
+        padding:14px 17px;border-left:4px solid #cbd5e1}
+  .foot{text-align:center;font-size:11px;color:#8b90a3;padding:14px 0 30px}
+
+  @media(max-width:768px){
+    body{padding:11px}
+    .hero{padding:18px;border-radius:16px}.hero h1{font-size:17px}
+    .hero-kpis{grid-template-columns:repeat(2,1fr);gap:8px}
+    .hk:first-child{grid-column:span 2}.hk .val{font-size:15px}
+    .sec{padding:16px 15px;border-radius:14px}.sec-sub{margin-left:0}
+    .frames{grid-template-columns:repeat(2,1fr)}
+    table thead{display:none}
+    table tbody tr{display:block;border:1.5px solid #e8eaf2;border-radius:11px;margin-bottom:9px;padding:9px 11px}
+    table td{display:flex;justify-content:space-between;gap:12px;border:none;padding:5px 0;text-align:right}
+    table td:before{content:attr(data-l);font-weight:700;color:#6b7280;font-size:10.5px;
+                    text-transform:uppercase;text-align:left;flex-shrink:0}
+    tr.total td,tr.pick td,tr.warnrow td{background:transparent}
+  }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gbox">
+    <div style="font-size:38px;margin-bottom:6px">🔒</div>
+    <div class="gt1">MOCHI DURIAN · KNB</div>
+    <div class="gt2">Tài liệu nội bộ — nhập mật khẩu để xem</div>
+    <input type="password" class="gin" id="gpw" placeholder="Mật khẩu" onkeydown="if(event.key==='Enter')doGate()">
+    <button class="gbtn" onclick="doGate()">Xem báo cáo</button>
+    <div class="gerr" id="gerr"></div>
+  </div>
+</div>
+
+<div id="main">
+<div class="page">
+
+  <div class="hero">
+    <h1>🥮 MOCHI DURIAN — Báo cáo tháng 8 &amp; quyết định nhập 10.000</h1>
+    <div class="sub">01–31/08/2026 · LONGDMV + OANHPTK · Philippines COD · nguồn: P&amp;L Duration + 11.210 vận đơn</div>
+    <div class="hero-kpis">
+      <div class="hk">
+        <div class="lbl">Chi quảng cáo</div>
+        <div class="val money">282.865.574đ</div>
+        <div class="note">9.124.696đ/ngày · CPQC 39,48%</div>
+      </div>
+      <div class="hk">
+        <div class="lbl">GMV vận đơn</div>
+        <div class="val money">716.437.040đ</div>
+        <div class="note">2.198 đơn · 4.140 item · AOV 741₱</div>
+      </div>
+      <div class="hk bad">
+        <div class="lbl">ROAS gộp</div>
+        <div class="val">2,53×</div>
+        <div class="note">mục tiêu 3,80× · tháng 7 là 4,13×</div>
+      </div>
+      <div class="hk bad">
+        <div class="lbl">ROAS thực nhận</div>
+        <div class="val">1,76×</div>
+        <div class="note">sau hoàn 30,65% · ngưỡng đỏ 2,0×</div>
+      </div>
+      <div class="hk warn">
+        <div class="lbl">CM3 — lãi thật</div>
+        <div class="val money">120.529.560đ</div>
+        <div class="note">16,82% GMV · 3.888.050đ/ngày</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert">
+    <b>Kết luận một dòng:</b> tháng 8 chi quảng cáo gấp <b>3,06 lần</b> so với cuối tháng 7 (2,98tr → 9,12tr mỗi ngày),
+    nhưng lợi nhuận thật mỗi ngày <b>giảm 13%</b> (4,48tr → 3,89tr). Tiền đổ thêm vào đang mua doanh thu bằng lợi nhuận.
+  </div>
+
+  <!-- ══════ PHẦN A ══════ -->
+  <div class="part"><span class="pn">Phần A</span><span class="pt">Góc nhìn chuyên môn — hiệu suất quảng cáo</span></div>
+
+  <!-- A1 -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#dc2626">📉</div><h2>1. Ba kỳ liên tiếp — chi gấp ba, lãi mỗi ngày đi lùi</h2></div>
+    <div class="sec-sub">Nối tiếp báo cáo 20/07–10/08 đã lập trước đây với dữ liệu tháng 8 đầy đủ</div>
+    <table>
+      <thead><tr>
+        <th>Kỳ</th><th class="num">Ads mỗi ngày</th><th class="num">ROAS gộp</th><th class="num">Tỉ lệ hoàn</th>
+        <th class="num">CM3 mỗi ngày</th><th class="num">CM3 / GMV</th>
+      </tr></thead>
+      <tbody>
+        <tr class="pick">
+          <td data-l="Kỳ"><b>20–30/07</b> <span class="mut">11 ngày · trước khi đẩy</span></td>
+          <td class="num money" data-l="Ads/ngày">2.980.000đ</td>
+          <td class="num" data-l="ROAS"><span class="badge bg">4,13×</span></td>
+          <td class="num" data-l="Hoàn">23,5%</td>
+          <td class="num money" data-l="CM3/ngày"><b>4.480.000đ</b></td>
+          <td class="num" data-l="CM3/GMV"><span class="badge bg">36,5%</span></td>
+        </tr>
+        <tr>
+          <td data-l="Kỳ"><b>31/07–10/08</b> <span class="mut">11 ngày · đẩy ×2</span></td>
+          <td class="num money" data-l="Ads/ngày">5.890.000đ</td>
+          <td class="num" data-l="ROAS"><span class="badge by">2,64×</span></td>
+          <td class="num" data-l="Hoàn">23,5%</td>
+          <td class="num money" data-l="CM3/ngày">3.560.000đ</td>
+          <td class="num" data-l="CM3/GMV"><span class="badge by">22,9%</span></td>
+        </tr>
+        <tr class="warnrow">
+          <td data-l="Kỳ"><b>01–31/08</b> <span class="mut">31 ngày · đẩy ×3</span></td>
+          <td class="num money" data-l="Ads/ngày">9.124.696đ</td>
+          <td class="num" data-l="ROAS"><span class="badge br">2,53×</span></td>
+          <td class="num" data-l="Hoàn"><span class="badge br">30,65%</span></td>
+          <td class="num money" data-l="CM3/ngày">3.888.050đ</td>
+          <td class="num" data-l="CM3/GMV"><span class="badge br">16,82%</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="verdict v-red">
+      <b>Đây là bằng chứng rõ nhất của "mua doanh thu bằng lợi nhuận".</b>
+      Từ 20–30/07 sang tháng 8: ngân sách mỗi ngày tăng <b>206%</b>, doanh số mỗi ngày tăng <b>88%</b>,
+      nhưng lợi nhuận thật mỗi ngày <b>giảm 13%</b>. Biên lãi rơi từ 36,5% xuống 16,82% — mất hơn một nửa.
+      Nguyên nhân kép: CPQC leo từ ~24% lên 39,48% <i>và</i> tỉ lệ hoàn xấu thêm 7 điểm.
+    </div>
+  </div>
+
+  <!-- A2 -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#6d28d9">📊</div><h2>2. Năm khung thời gian — đủ điều kiện scale chưa?</h2></div>
+    <div class="sec-sub">Khung dài = nền · khung ngắn = hướng đi. Chỉ tăng ngân sách khi cả hai cùng một phía</div>
+    <div class="frames">
+      <div class="fr f-r"><div class="ft">30 ngày</div><div class="fv">2,53×</div><div class="fn">nền — dưới mục tiêu</div></div>
+      <div class="fr f-r"><div class="ft">14 ngày</div><div class="fv">2,47×</div><div class="fn">thấp hơn nền</div></div>
+      <div class="fr f-r"><div class="ft">7 ngày</div><div class="fv">2,40×</div><div class="fn">thấp hơn nữa</div></div>
+      <div class="fr f-y"><div class="ft">3 ngày</div><div class="fv">2,84×</div><div class="fn">bật lên</div></div>
+      <div class="fr f-r"><div class="ft">31/08</div><div class="fv">2,20×</div><div class="fn">tụt lại</div></div>
+    </div>
+    <table>
+      <thead><tr>
+        <th>Khung</th><th class="num">ROAS gộp</th><th class="num">CPQC</th><th class="num">Hoàn</th>
+        <th class="num">ROAS thực</th><th class="num">Ads/ngày</th><th class="num">CM3/ngày</th>
+      </tr></thead>
+      <tbody>
+        <tr><td data-l="Khung">30D · cả tháng 8</td><td class="num" data-l="ROAS">2,53×</td><td class="num" data-l="CPQC">39,5%</td><td class="num" data-l="Hoàn">30,6%</td><td class="num" data-l="ROAS thực"><span class="badge br">1,76×</span></td><td class="num money" data-l="Ads/ngày">9.124.696đ</td><td class="num money" data-l="CM3/ngày">4.574.177đ</td></tr>
+        <tr><td data-l="Khung">14D · 18–31/08</td><td class="num" data-l="ROAS">2,47×</td><td class="num" data-l="CPQC">40,5%</td><td class="num" data-l="Hoàn">28,0%</td><td class="num" data-l="ROAS thực"><span class="badge br">1,78×</span></td><td class="num money" data-l="Ads/ngày">10.324.441đ</td><td class="num money" data-l="CM3/ngày">5.419.870đ</td></tr>
+        <tr><td data-l="Khung">7D · 25–31/08</td><td class="num" data-l="ROAS">2,40×</td><td class="num" data-l="CPQC">41,7%</td><td class="num" data-l="Hoàn">24,2%</td><td class="num" data-l="ROAS thực"><span class="badge br">1,82×</span></td><td class="num money" data-l="Ads/ngày">11.174.833đ</td><td class="num money" data-l="CM3/ngày">6.241.078đ</td></tr>
+        <tr><td data-l="Khung">3D · 29–31/08</td><td class="num" data-l="ROAS">2,84×</td><td class="num" data-l="CPQC">35,2%</td><td class="num" data-l="Hoàn">23,7%</td><td class="num" data-l="ROAS thực"><span class="badge by">2,17×</span></td><td class="num money" data-l="Ads/ngày">8.990.309đ</td><td class="num money" data-l="CM3/ngày">7.676.553đ</td></tr>
+        <tr><td data-l="Khung">Hôm cuối 31/08</td><td class="num" data-l="ROAS">2,20×</td><td class="num" data-l="CPQC">45,5%</td><td class="num" data-l="Hoàn">20,7%</td><td class="num" data-l="ROAS thực"><span class="badge br">1,74×</span></td><td class="num money" data-l="Ads/ngày">9.584.692đ</td><td class="num money" data-l="CM3/ngày">4.782.660đ</td></tr>
+      </tbody>
+    </table>
+    <div class="verdict v-red">
+      <b>🔴 CHƯA ĐỦ ĐIỀU KIỆN SCALE.</b> Khung ngắn xấu hơn khung dài liên tiếp: 2,53 → 2,47 → 2,40.
+      Cú bật ở khung 3 ngày là do <i>giảm chi</i> (11,17tr → 8,99tr mỗi ngày) chứ không phải do quảng cáo tốt lên —
+      chính điều đó lại củng cố kết luận ở mục 5. Quan trọng hơn: <b>ROAS thực nhận mọi khung đều dưới 2,0</b>,
+      tức nằm trong vùng báo động của chuẩn Philippines.
+    </div>
+  </div>
+
+  <!-- A3 -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#0369a1">🩺</div><h2>3. Bảng điểm chuyên môn theo marketer</h2></div>
+    <div class="sec-sub">Bấm tên để xem · toàn kỳ tháng 8 · so với ngưỡng chuẩn Philippines</div>
+    <div class="who-pills" id="mkPills"></div>
+    <div class="mhead" id="mkHead"></div>
+    <table>
+      <thead><tr><th>Chỉ số</th><th class="num">Giá trị</th><th class="num">Ngưỡng</th><th class="num">ĐG</th><th>Ghi chú</th></tr></thead>
+      <tbody id="mkBody"></tbody>
+    </table>
+    <div class="verdict v-amber" id="mkVerdict"></div>
+  </div>
+
+  <!-- A4 -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#0369a1">👥</div><h2>4. Hai marketer — tác động của việc tăng ngân sách</h2></div>
+    <div class="sec-sub">Chia đôi tháng 8 tại mốc 15/08 để thấy tác động của việc tăng ngân sách</div>
+    <table>
+      <thead><tr>
+        <th>Marketer · kỳ</th><th class="num">Ads/ngày</th><th class="num">ROAS</th><th class="num">CPQC</th>
+        <th class="num">Hoàn</th><th class="num">CPM</th><th class="num">CTR</th><th class="num">ABS</th>
+      </tr></thead>
+      <tbody>
+        <tr><td data-l="Marketer"><span class="who">LONGDMV</span> · 01–15/08</td><td class="num money" data-l="Ads/ngày">3.393.690đ</td><td class="num" data-l="ROAS">2,88×</td><td class="num" data-l="CPQC">34,7%</td><td class="num" data-l="Hoàn">30,0%</td><td class="num money" data-l="CPM">61.882đ</td><td class="num" data-l="CTR">1,81%</td><td class="num" data-l="ABS">2,10</td></tr>
+        <tr class="warnrow"><td data-l="Marketer"><span class="who">LONGDMV</span> · 16–31/08</td><td class="num money" data-l="Ads/ngày">5.194.882đ</td><td class="num" data-l="ROAS">2,37×</td><td class="num" data-l="CPQC">42,2%</td><td class="num" data-l="Hoàn">28,6%</td><td class="num money" data-l="CPM"><span class="badge br">73.759đ</span></td><td class="num" data-l="CTR">1,72%</td><td class="num" data-l="ABS">1,86</td></tr>
+        <tr><td data-l="Marketer"><span class="who">OANHPTK</span> · 01–15/08</td><td class="num money" data-l="Ads/ngày">3.869.939đ</td><td class="num" data-l="ROAS">2,43×</td><td class="num" data-l="CPQC">41,1%</td><td class="num" data-l="Hoàn">39,3%</td><td class="num money" data-l="CPM">47.271đ</td><td class="num" data-l="CTR">1,47%</td><td class="num" data-l="ABS">1,63</td></tr>
+        <tr><td data-l="Marketer"><span class="who">OANHPTK</span> · 16–31/08</td><td class="num money" data-l="Ads/ngày">4.646.841đ</td><td class="num" data-l="ROAS">2,42×</td><td class="num" data-l="CPQC">41,3%</td><td class="num" data-l="Hoàn"><span class="badge bg">28,4%</span></td><td class="num money" data-l="CPM">58.145đ</td><td class="num" data-l="CTR">1,59%</td><td class="num" data-l="ABS">1,98</td></tr>
+        <tr class="total"><td data-l="Marketer">LONGDMV · cả tháng</td><td class="num money" data-l="Ads/ngày">4.323.660đ</td><td class="num" data-l="ROAS">2,56×</td><td class="num" data-l="CPQC">39,0%</td><td class="num" data-l="Hoàn">29,2%</td><td class="num money" data-l="CPM">68.747đ</td><td class="num" data-l="CTR">1,76%</td><td class="num" data-l="ABS">1,96</td></tr>
+        <tr class="total"><td data-l="Marketer">OANHPTK · cả tháng</td><td class="num money" data-l="Ads/ngày">4.270.920đ</td><td class="num" data-l="ROAS">2,43×</td><td class="num" data-l="CPQC">41,2%</td><td class="num" data-l="Hoàn">33,2%</td><td class="num money" data-l="CPM">52.818đ</td><td class="num" data-l="CTR">1,53%</td><td class="num" data-l="ABS">1,81</td></tr>
+      </tbody>
+    </table>
+    <div class="verdict v-amber">
+      <b>Ba điều rút ra.</b>
+      ① <b>CPM tăng ở cả hai người</b> khi ngân sách lên: LONGDMV +19%, OANHPTK +23%. Cùng chạy một sản phẩm trên cùng thị trường,
+      hai người đang đấu giá lẫn nhau — đúng cơ chế đã cảnh báo hồi tháng 8.
+      ② <b>OANHPTK đã sửa được tỉ lệ hoàn</b>: 39,3% xuống 28,4%, đồng thời kéo ABS từ 1,63 lên 1,98. Đây là việc làm tốt nhất của tháng, cần nhân rộng cách làm.
+      ③ <b>LONGDMV đi ngược</b>: ABS rơi 2,10 → 1,86 và CPQC vọt lên 42,2% — người cầm nhiều tiền nhất lại là người xấu đi nhanh nhất.
+    </div>
+  </div>
+
+  <!-- ══════ PHẦN B ══════ -->
+  <div class="part"><span class="pn">Phần B</span><span class="pt">Góc nhìn CEO — dòng tiền và quyết định nhập hàng</span></div>
+
+  <!-- B5 -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#16a34a">⚖️</div><h2>5. Điểm ngọt ngân sách — chi bao nhiêu thì lãi nhất</h2></div>
+    <div class="sec-sub">Gom 31 ngày của tháng 8 theo mức chi thực tế mỗi ngày · đây là thí nghiệm tự nhiên, không phải mô hình</div>
+    <table>
+      <thead><tr>
+        <th>Nhóm ngày theo mức chi</th><th class="num">Số ngày</th><th class="num">Ads TB/ngày</th>
+        <th class="num">GMV TB/ngày</th><th class="num">ROAS</th><th class="num">CPQC</th>
+        <th class="num">CM3 TB/ngày</th><th class="num">CM3 trên 1đ ads</th>
+      </tr></thead>
+      <tbody>
+        <tr class="pick"><td data-l="Nhóm">Dưới 7,0 triệu</td><td class="num" data-l="Số ngày">6</td><td class="num money" data-l="Ads TB">5.442.959đ</td><td class="num money" data-l="GMV TB">17.177.233đ</td><td class="num" data-l="ROAS"><span class="badge bg">3,16×</span></td><td class="num" data-l="CPQC">31,7%</td><td class="num money" data-l="CM3 TB">3.858.824đ</td><td class="num" data-l="CM3/1đ"><b>0,71đ</b></td></tr>
+        <tr class="pick"><td data-l="Nhóm">7,0 – 9,0 triệu</td><td class="num" data-l="Số ngày">8</td><td class="num money" data-l="Ads TB">8.007.611đ</td><td class="num money" data-l="GMV TB">22.360.745đ</td><td class="num" data-l="ROAS">2,79×</td><td class="num" data-l="CPQC">35,8%</td><td class="num money" data-l="CM3 TB"><b>4.297.543đ</b></td><td class="num" data-l="CM3/1đ">0,54đ</td></tr>
+        <tr><td data-l="Nhóm">9,0 – 11,0 triệu</td><td class="num" data-l="Số ngày">11</td><td class="num money" data-l="Ads TB">10.037.754đ</td><td class="num money" data-l="GMV TB">25.293.400đ</td><td class="num" data-l="ROAS">2,52×</td><td class="num" data-l="CPQC">39,7%</td><td class="num money" data-l="CM3 TB">4.289.751đ</td><td class="num" data-l="CM3/1đ">0,43đ</td></tr>
+        <tr class="warnrow"><td data-l="Nhóm">Trên 11,0 triệu</td><td class="num" data-l="Số ngày">6</td><td class="num money" data-l="Ads TB">12.621.940đ</td><td class="num money" data-l="GMV TB">26.043.380đ</td><td class="num" data-l="ROAS"><span class="badge br">2,06×</span></td><td class="num" data-l="CPQC">48,5%</td><td class="num money" data-l="CM3 TB"><span class="badge br">2.634.836đ</span></td><td class="num" data-l="CM3/1đ">0,21đ</td></tr>
+      </tbody>
+    </table>
+    <div class="verdict v-red">
+      <b>Con số quan trọng nhất của cả báo cáo nằm ở cột cuối cùng.</b>
+      Những ngày chi dưới 7 triệu, mỗi đồng quảng cáo tạo ra <b>0,71đ lợi nhuận</b>.
+      Những ngày chi trên 11 triệu, con số đó chỉ còn <b>0,21đ</b> — kém hơn <b>3,4 lần</b>.
+      <br><br>
+      Nghiêm trọng hơn: chi trên 11 triệu/ngày cho ra CM3 <b>2,63 triệu/ngày</b>, tức <b>thấp hơn cả những ngày chi dưới 7 triệu</b> (3,86 triệu).
+      Đổ thêm 6 triệu tiền quảng cáo mỗi ngày mà mang về ít lợi nhuận hơn — đây là định nghĩa chính xác của việc vượt điểm ngọt.
+      <br><br>
+      <b>Vùng tối ưu là 7–9 triệu/ngày</b> cho toàn sản phẩm (CM3 cao nhất 4,30 triệu/ngày), tức khoảng <b>3,5–4,5 triệu mỗi marketer</b>.
+    </div>
+  </div>
+
+  <!-- B6 -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#b45309">📦</div><h2>6. Tỉ lệ hoàn — nơi mất tiền lớn nhất, và tin tốt</h2></div>
+    <div class="sec-sub">Bóc từ 2.208 vận đơn MOCHI DURIAN xuất trong tháng 8</div>
+
+    <table>
+      <thead><tr><th>Tuần (theo ngày xuất)</th><th class="num">Số đơn</th><th class="num">Đơn hoàn</th><th class="num">Tỉ lệ hoàn</th><th class="num">GMV hoàn</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Tuần">01–07/08</td><td class="num" data-l="Đơn">395</td><td class="num" data-l="Hoàn">138</td><td class="num" data-l="Tỉ lệ"><span class="badge br">34,9%</span></td><td class="num" data-l="GMV hoàn">33,6%</td></tr>
+        <tr><td data-l="Tuần">08–14/08</td><td class="num" data-l="Đơn">555</td><td class="num" data-l="Hoàn">180</td><td class="num" data-l="Tỉ lệ"><span class="badge br">32,4%</span></td><td class="num" data-l="GMV hoàn">30,6%</td></tr>
+        <tr><td data-l="Tuần">15–21/08</td><td class="num" data-l="Đơn">458</td><td class="num" data-l="Hoàn">160</td><td class="num" data-l="Tỉ lệ"><span class="badge br">34,9%</span></td><td class="num" data-l="GMV hoàn">34,6%</td></tr>
+        <tr><td data-l="Tuần">22–28/08</td><td class="num" data-l="Đơn">585</td><td class="num" data-l="Hoàn">172</td><td class="num" data-l="Tỉ lệ"><span class="badge by">29,4%</span></td><td class="num" data-l="GMV hoàn">28,3%</td></tr>
+        <tr class="pick"><td data-l="Tuần">29–31/08</td><td class="num" data-l="Đơn">215</td><td class="num" data-l="Hoàn">46</td><td class="num" data-l="Tỉ lệ"><span class="badge bg">21,4%</span></td><td class="num" data-l="GMV hoàn">23,7%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="verdict v-green" style="margin-bottom:16px">
+      <b>Tin tốt: xu hướng đang đúng hướng.</b> Tỉ lệ hoàn giảm đều từ 34,9% xuống 21,4% trong ba tuần cuối.
+      Nếu giữ được mức 21–24% cho cả tháng 9 thì riêng việc này đã cứu được khoảng <b>7 điểm phần trăm CM3</b>.
+      Cần xác nhận việc gì đã tạo ra thay đổi này để nhân rộng — nhiều khả năng đến từ cách làm của OANHPTK (39,3% xuống 28,4%).
+    </div>
+
+    <table>
+      <thead><tr><th>Nơi tiền rơi</th><th class="num">Quy mô</th><th class="num">Tỉ lệ hoàn</th><th>Hành động</th></tr></thead>
+      <tbody>
+        <tr class="warnrow">
+          <td data-l="Nơi">10 tỉnh xa có hoàn ≥ 30%<div class="mut">Cotabato 63% · Davao Del Sur 44% · Zamboanga 40% · Bohol 38% · Pampanga 35%</div></td>
+          <td class="num" data-l="Quy mô">629 đơn <span class="mut">28% tổng</span></td>
+          <td class="num" data-l="Tỉ lệ"><span class="badge br">38%</span></td>
+          <td data-l="Hành động">Gọi xác nhận bắt buộc trước khi đẩy đơn. Kéo về mức Metro Manila (24%) là <b>+3,9 điểm RTS toàn kỳ</b></td>
+        </tr>
+        <tr class="warnrow">
+          <td data-l="Nơi">Đơn chỉ có 1 sản phẩm</td>
+          <td class="num" data-l="Quy mô">1.128 đơn <span class="mut">51% tổng</span></td>
+          <td class="num" data-l="Tỉ lệ"><span class="badge br">35,4%</span></td>
+          <td data-l="Hành động">Đơn 2 sản phẩm chỉ hoàn <b>24,6%</b> — đẩy bundle vừa tăng AOV vừa giảm hoàn</td>
+        </tr>
+        <tr>
+          <td data-l="Nơi">Metro Manila</td>
+          <td class="num" data-l="Quy mô">448 đơn</td>
+          <td class="num" data-l="Tỉ lệ"><span class="badge by">24%</span></td>
+          <td data-l="Hành động">Mức tốt nhất — dùng làm chuẩn đối chiếu</td>
+        </tr>
+        <tr>
+          <td data-l="Nơi">Khách quay lại mua lần 2</td>
+          <td class="num" data-l="Quy mô">22 / 2.074 khách</td>
+          <td class="num" data-l="Tỉ lệ"><span class="badge br">1,1%</span></td>
+          <td data-l="Hành động">Gần như bằng không. Khách quay lại chi <b>1.545₱</b> so với 734₱ — kênh doanh thu chưa khai thác</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- B-CLV -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#0891b2">🔁</div><h2>7. Khách quay lại — CLV có gánh nổi CAC không?</h2></div>
+    <div class="sec-sub">Bóc từ toàn bộ vận đơn DURIAN tháng 4 → tháng 9 · tính trên khách đã có ít nhất một đơn giao thành công</div>
+
+    <table>
+      <thead><tr><th>Chỉ số khách hàng</th><th class="num">DURIAN</th><th class="num">Chuẩn tham chiếu</th><th>Đọc là</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Chỉ số">Khách mua thật <span class="mut">có ≥1 đơn giao được</span></td><td class="num" data-l="Giá trị">2.074</td><td class="num" data-l="Chuẩn">—</td><td data-l="Đọc là">Toàn bộ vòng đời sản phẩm</td></tr>
+        <tr class="warnrow"><td data-l="Chỉ số">Tỉ lệ mua lại lần 2</td><td class="num" data-l="Giá trị"><b>1,06%</b> <span class="mut">22 khách</span></td><td class="num" data-l="Chuẩn">≥ 15%</td><td data-l="Đọc là"><b>Gần như không có khách quay lại</b></td></tr>
+        <tr><td data-l="Chỉ số">Mua lại lần 3</td><td class="num" data-l="Giá trị">0 khách</td><td class="num" data-l="Chuẩn">—</td><td data-l="Đọc là">Chưa có ai mua tới lần thứ ba</td></tr>
+        <tr><td data-l="Chỉ số">Doanh thu khách quay lại</td><td class="num" data-l="Giá trị">1.545₱</td><td class="num" data-l="Chuẩn">—</td><td data-l="Đọc là">Gấp 2,1 lần khách mua một lần (734₱)</td></tr>
+        <tr><td data-l="Chỉ số">Đóng góp vào doanh thu</td><td class="num" data-l="Giá trị">2,21%</td><td class="num" data-l="Chuẩn">≥ 20%</td><td data-l="Đọc là">Kênh này gần như bằng không</td></tr>
+        <tr><td data-l="Chỉ số">Khoảng cách hai lần mua</td><td class="num" data-l="Giá trị">6 ngày <span class="mut">trung vị</span></td><td class="num" data-l="Chuẩn">—</td><td data-l="Đọc là">Đáng ngờ — xem ghi chú bên dưới</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec-sub" style="margin:20px 0 10px 0">Đơn vị kinh tế mỗi khách giao thành công — tháng 8</div>
+    <table>
+      <thead><tr><th>Khoản</th><th class="num">Toàn sản phẩm</th><th class="num">LONGDMV</th><th class="num">OANHPTK</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Khoản">Khách đặt hàng</td><td class="num" data-l="Tổng">2.168</td><td class="num" data-l="LONG">1.005</td><td class="num" data-l="OANH">1.009</td></tr>
+        <tr><td data-l="Khoản">Khách giao được</td><td class="num" data-l="Tổng">1.429 <span class="mut">65,9%</span></td><td class="num" data-l="LONG">675 <span class="mut">67%</span></td><td class="num" data-l="OANH">631 <span class="mut">63%</span></td></tr>
+        <tr><td data-l="Khoản">Doanh thu mỗi khách</td><td class="num money" data-l="Tổng">347.715đ</td><td class="num money" data-l="LONG">360.438đ</td><td class="num money" data-l="OANH">340.149đ</td></tr>
+        <tr><td data-l="Khoản">− Giá vốn hàng</td><td class="num money" data-l="Tổng">50.538đ</td><td class="num money" data-l="LONG">~49.000đ</td><td class="num money" data-l="OANH">~46.700đ</td></tr>
+        <tr><td data-l="Khoản">− Ship, COD, vận hành</td><td class="num money" data-l="Tổng">14.884đ</td><td class="num money" data-l="LONG">~19.500đ</td><td class="num money" data-l="OANH">~14.800đ</td></tr>
+        <tr class="total"><td data-l="Khoản">Đóng góp trước quảng cáo</td><td class="num money" data-l="Tổng">282.293đ</td><td class="num money" data-l="LONG">291.925đ</td><td class="num money" data-l="OANH">278.644đ</td></tr>
+        <tr class="warnrow"><td data-l="Khoản">− CAC <span class="mut">chi phí có được 1 khách giao được</span></td><td class="num money" data-l="Tổng"><b>197.947đ</b></td><td class="num money" data-l="LONG">198.553đ</td><td class="num money" data-l="OANH">209.823đ</td></tr>
+        <tr class="total"><td data-l="Khoản">= CM3 mỗi khách</td><td class="num money" data-l="Tổng">84.345đ</td><td class="num money" data-l="LONG">93.372đ</td><td class="num money" data-l="OANH">68.821đ</td></tr>
+        <tr class="warnrow"><td data-l="Khoản"><b>LTV / CAC</b></td><td class="num" data-l="Tổng"><span class="badge br">1,43×</span></td><td class="num" data-l="LONG"><span class="badge br">1,47×</span></td><td class="num" data-l="OANH"><span class="badge br">1,33×</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="verdict v-red">
+      <b>Trả lời thẳng câu hỏi: CLV không gánh nổi CAC theo chuẩn nào cả.</b>
+      Chuẩn ngành cho mô hình có khách quay lại là <b>LTV/CAC ≥ 3</b>. DURIAN đang ở <b>1,43</b> — nghĩa là mỗi đồng bỏ ra
+      để có một khách chỉ thu về 1,43 đồng đóng góp, trước khi trừ lương, kho bãi và mọi chi phí cố định khác.
+      <br><br>
+      Lý do là <b>tỉ lệ mua lại chỉ 1,06%</b>, khiến hệ số CLV chỉ là <b>×1,012</b> — thực tế mỗi khách chỉ mua đúng một lần.
+      Toàn bộ mô hình đang phải sống bằng khách mới, mà CAC khách mới thì đang tăng theo CPM.
+      <br><br>
+      <b>Vì sao CAC thật là 197.947đ chứ không phải 130.473đ:</b> chi phí quảng cáo chia cho <i>khách đặt hàng</i> ra 130.473đ,
+      nhưng 34,1% số khách đó không nhận hàng. Tiền quảng cáo đã tiêu cho họ vẫn mất. Con số phải dùng để ra quyết định
+      là chi phí trên mỗi <b>khách giao được</b>.
+    </div>
+
+    <div class="verdict v-green">
+      <b>Đòn bẩy: đây cũng là chỗ dễ cải thiện nhất vì đang xuất phát từ gần 0.</b>
+      Kéo tỉ lệ mua lại lên <b>10%</b> (mức bình thường của hàng ăn liền) thì hệ số CLV thành ×1,11,
+      LTV/CAC lên <b>1,58</b> và CM3 tăng thêm khoảng <b>13,3 triệu mỗi tháng</b> — không tốn đồng quảng cáo nào.
+      Lên 15% thì thêm khoảng 19,9 triệu.
+      <br><br>
+      Có 2.074 khách đã mua thật và gần như chưa ai được nhắn lại lần nào. Đây là tài sản đang để không.
+    </div>
+
+    <div class="verdict v-amber">
+      <b>Một chi tiết cần soát trước khi tin con số 1,06%.</b> Khoảng cách trung vị giữa hai lần mua chỉ <b>6 ngày</b> —
+      quá ngắn so với chu kỳ tiêu dùng thật của mặt hàng này. Nhiều khả năng phần lớn 22 ca "mua lại" thực chất là
+      khách đặt lại ngay sau đơn đầu (đặt nhầm, đặt thêm, hoặc đơn lỗi được tạo lại), chứ không phải quay lại mua tự nhiên.
+      Nếu đúng vậy thì <b>tỉ lệ mua lại thật còn thấp hơn 1,06%</b>, và kết luận ở trên càng đúng.
+    </div>
+  </div>
+
+  <!-- B7 -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#0f172a">🧮</div><h2>8. Quyết định nhập 10.000 — vốn và lợi nhuận</h2></div>
+    <div class="sec-sub">Giá vốn 24.972đ/unit theo nhật ký nhập hàng (lô tàu 5.000 ngày 08/07) · tồn hiện tại 2.946 item</div>
+    <table>
+      <thead><tr><th>Khoản</th><th class="num">Số tiền</th><th class="num">Ghi chú</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Khoản">Vốn hàng lô 10.000</td><td class="num money" data-l="Số tiền">249.720.000đ</td><td class="num" data-l="Ghi chú">10.000 × 24.972đ</td></tr>
+        <tr><td data-l="Khoản">Nguồn tự có — 70% CM3 tháng 8</td><td class="num money" data-l="Số tiền">− 84.370.692đ</td><td class="num" data-l="Ghi chú">tự tài trợ <b>33,8%</b></td></tr>
+        <tr class="total"><td data-l="Khoản">CÒN PHẢI BƠM</td><td class="num money" data-l="Số tiền">165.349.308đ</td><td class="num" data-l="Ghi chú">66,2% vốn lô</td></tr>
+        <tr><td data-l="Khoản">CM3 lô 10.000 tạo ra <span class="mut">nếu giữ hiệu suất tháng 8</span></td><td class="num money" data-l="Số tiền">291.134.203đ</td><td class="num" data-l="Ghi chú">29.113đ × 10.000 item</td></tr>
+        <tr class="pick"><td data-l="Khoản"><b>Thời gian hoàn vốn</b></td><td class="num" data-l="Số tiền"><b>64 ngày bán</b></td><td class="num" data-l="Ghi chú">ở nhịp CM3 3,89tr/ngày</td></tr>
+        <tr><td data-l="Khoản">Thời gian bán hết tồn + lô mới</td><td class="num" data-l="Số tiền">97 ngày</td><td class="num" data-l="Ghi chú">12.946 item ÷ 133,5 item/ngày</td></tr>
+      </tbody>
+    </table>
+
+    <div class="verdict v-green" style="margin-bottom:16px">
+      <b>Về mặt tài chính thuần tuý, lô này đáng đặt.</b> Bỏ ra 249,7 triệu, thu về 291,1 triệu lợi nhuận thật trong khoảng 3 tháng —
+      hoàn vốn sau 64 ngày bán. So với YAM BEEF NOODLES (cần 310 ngày để hoàn vốn) thì DURIAN khoẻ hơn hẳn về vòng quay.
+      Tự tài trợ được 33,8%, chỉ cần bơm thêm 165,3 triệu.
+    </div>
+
+    <div class="sec-sub" style="margin:0 0 10px 0">Nhưng con số sẽ khác rất nhiều nếu sửa được hai chỉ số</div>
+    <table>
+      <thead><tr><th>Kịch bản</th><th class="num">CPQC</th><th class="num">Hoàn</th><th class="num">CM3 mỗi item</th><th class="num">CM3 cả lô 10.000</th><th class="num">Chênh</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Kịch bản">Giữ nguyên hiệu suất tháng 8</td><td class="num" data-l="CPQC">39,5%</td><td class="num" data-l="Hoàn">30,6%</td><td class="num money" data-l="CM3/item">29.109đ</td><td class="num money" data-l="CM3 lô">291.088.884đ</td><td class="num" data-l="Chênh">—</td></tr>
+        <tr><td data-l="Kịch bản">Chỉ sửa CPQC về 35%</td><td class="num" data-l="CPQC">35,0%</td><td class="num" data-l="Hoàn">30,6%</td><td class="num money" data-l="CM3/item">36.862đ</td><td class="num money" data-l="CM3 lô">368.616.370đ</td><td class="num" data-l="Chênh"><span class="badge bg">+77,5tr</span></td></tr>
+        <tr class="pick"><td data-l="Kịch bản"><b>CPQC 35% + hoàn 25%</b></td><td class="num" data-l="CPQC">35,0%</td><td class="num" data-l="Hoàn">25,0%</td><td class="num money" data-l="CM3/item">46.639đ</td><td class="num money" data-l="CM3 lô"><b>466.390.990đ</b></td><td class="num" data-l="Chênh"><span class="badge bg">+175,3tr</span></td></tr>
+        <tr><td data-l="Kịch bản">CPQC 32% + hoàn 25%</td><td class="num" data-l="CPQC">32,0%</td><td class="num" data-l="Hoàn">25,0%</td><td class="num money" data-l="CM3/item">51.831đ</td><td class="num money" data-l="CM3 lô">518.306.718đ</td><td class="num" data-l="Chênh"><span class="badge bg">+227,2tr</span></td></tr>
+        <tr><td data-l="Kịch bản">CPQC 30% + hoàn 22%</td><td class="num" data-l="CPQC">30,0%</td><td class="num" data-l="Hoàn">22,0%</td><td class="num money" data-l="CM3/item">60.483đ</td><td class="num money" data-l="CM3 lô">604.832.930đ</td><td class="num" data-l="Chênh"><span class="badge bg">+313,7tr</span></td></tr>
+      </tbody>
+    </table>
+    <div class="verdict v-blue">
+      <b>Mỗi 1 điểm phần trăm — dù là CPQC hay tỉ lệ hoàn — đáng 17,3 triệu CM3 trên lô 10.000.</b>
+      Kịch bản khả thi nhất là hàng giữa: CPQC 35% (đã đạt được ở những ngày chi dưới 9 triệu) và hoàn 25%
+      (tuần cuối tháng 8 đã xuống 21,4%). Riêng hai việc đó đã <b>+175 triệu</b> — gần bằng toàn bộ số tiền phải bơm thêm cho lô hàng.
+      <br><br>
+      <b>Ngược lại, nếu đặt 10.000 mà vẫn giữ nhịp chi trên 11 triệu/ngày</b> thì CPQC sẽ ở vùng 48% và lô hàng chỉ tạo ra
+      khoảng một nửa số lợi nhuận ở bảng trên — đúng vết xe của tháng 8.
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="sec">
+    <div class="sec-h"><div class="sec-ic" style="background:#6d28d9">📋</div><h2>9. Việc phải làm — theo thứ tự</h2></div>
+    <div class="sec-sub">Sắp theo mức tác động lên lợi nhuận, không theo mức dễ làm</div>
+    <div class="rules">
+      <div class="ri urgent"><div class="n"></div><div>
+        <div class="rh">Kéo ngân sách về vùng 7–9 triệu/ngày cho cả sản phẩm</div>
+        <div class="rd">Tháng 8 có 6 ngày chi trên 11 triệu và chính 6 ngày đó cho CM3 thấp nhất tháng (2,63 triệu/ngày). Chia lại: mỗi marketer 3,5–4,5 triệu/ngày. Đây là việc duy nhất vừa tăng lợi nhuận vừa giảm tiền bỏ ra.</div>
+        <span class="rw">Tác động ước tính +1,5 triệu CM3 mỗi ngày</span>
+      </div></div>
+      <div class="ri urgent"><div class="n"></div><div>
+        <div class="rh">Bắt buộc gọi xác nhận cho 10 tỉnh có hoàn ≥30%</div>
+        <div class="rd">Cotabato 63%, Davao Del Sur 44%, Zamboanga Del Sur 40%, Bohol 38%, Pampanga 35%, Iloilo 33%, Cebu 32%, Misamis Oriental 32%, Bulacan 32%, Benguet 30%. Nhóm này chiếm 28% số đơn nhưng 34% số đơn hoàn. Kéo về mức Metro Manila là +3,9 điểm RTS toàn kỳ.</div>
+        <span class="rw">≈ +67 triệu CM3 trên lô 10.000</span>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Ép bundle — chặn đơn 1 sản phẩm</div>
+        <div class="rd">Đơn 1 sản phẩm hoàn 35,4%, đơn 2 sản phẩm chỉ 24,6%. Hiện 51% số đơn là đơn đơn lẻ. Đẩy khuyến mãi mua 2 tặng 1 hoặc miễn phí ship từ đơn thứ 2 sẽ đánh trúng cả ba việc: AOV, ABS và tỉ lệ hoàn.</div>
+        <span class="rw">Vừa tăng AOV vừa giảm hoàn</span>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Tách tệp giữa LONGDMV và OANHPTK</div>
+        <div class="rd">CPM tăng đồng thời ở cả hai khi ngân sách lên (+19% và +23%) — dấu hiệu rõ của việc tự đấu giá lẫn nhau. Tách theo kênh hoặc page, bật loại trừ chéo tệp, và theo dõi CPM của camp gốc làm nhiệt kế.</div>
+        <span class="rw">Trả CPM về vùng 50–55k</span>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Hỏi lại OANHPTK đã làm gì để kéo hoàn từ 39,3% xuống 28,4%</div>
+        <div class="rd">Đây là cải thiện lớn nhất của tháng và hiện chưa ai biết chính xác nhờ đâu. Ghi lại thành quy trình rồi áp cho LONGDMV — cách rẻ nhất để có thêm vài điểm CM3.</div>
+        <span class="rw">Làm trong tuần này</span>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Sửa trang đích — CR Web 3,48% là điểm gãy chưa ai đụng tới</div>
+        <div class="rd">Chuẩn PH là trên 5,5%. Với 63.082 lượt xem trang trong tháng, mỗi 1 điểm % CR tăng thêm tương đương khoảng 630 đơn. Đây là đòn bẩy lớn nhưng đang bị bỏ qua vì mọi người chỉ nhìn ROAS.</div>
+        <span class="rw">Cần người ngoài đội ads xử lý</span>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Mở kênh nhắn lại khách cũ — LTV/CAC đang chỉ 1,43</div>
+        <div class="rd">Chỉ 22/2.074 khách mua lần hai (1,06%), đóng góp 2,21% doanh thu. Khách quay lại chi 1.545₱ so với 734₱ của khách mới. Kéo tỉ lệ mua lại lên 10% thì LTV/CAC lên 1,58 và CM3 thêm ~13,3 triệu mỗi tháng — không tốn đồng quảng cáo nào. Có sẵn 2.074 số điện thoại khách đã mua thật chưa ai chăm.</div>
+        <span class="rw">Kênh duy nhất né được CPM đang leo</span>
+      </div></div>
+      <div class="ri"><div class="n"></div><div>
+        <div class="rh">Đặt lô 10.000 — nhưng gắn với điều kiện</div>
+        <div class="rd">Tài chính ủng hộ việc đặt hàng: hoàn vốn 64 ngày, cần bơm 165,3 triệu. Nhưng nên chốt trước với đội: tháng 9 chạy ở nhịp 7–9 triệu/ngày và mục tiêu hoàn dưới 25%. Đặt hàng mà vẫn giữ nhịp chi cũ thì lô này chỉ tạo ra một nửa lợi nhuận tiềm năng.</div>
+        <span class="rw">Xin trả 50% đặt cọc / 50% khi lên tàu</span>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>Nguồn số liệu.</b> Chi phí quảng cáo, GMV, item, CM3 lấy từ dashboard P&amp;L Duration lọc SKU MOCHI DURIAN,
+    Startdate 1/8/26 – Enddate 31/8/26 (bản tổng và hai bản tách theo marketer LONGDMV, OANHPTK).
+    Tỉ lệ hoàn theo tỉnh, theo tuần, theo số sản phẩm mỗi đơn và số khách quay lại được bóc từ file vận đơn 11.210 dòng,
+    lọc các đơn có MOCHI DURIAN với ngày xuất trong tháng 8 (2.208 đơn — khớp với 2.198 đơn trên P&amp;L, chênh 0,5%).
+    Giá vốn 24.972đ/unit lấy từ nhật ký nhập hàng, lô tàu 5.000 unit ngày 08/07/2026.<br>
+    Số liệu kỳ 20/07–10/08 lấy từ báo cáo 30D đã lập trước đây để so sánh xu hướng.<br>
+    <b>Chỗ cần soát:</b> CM3 trên P&amp;L là 120.529.560đ (16,82% GMV) trong khi cột CM cộng dồn theo ngày là 141.799.482đ —
+    chênh 21,3 triệu là phần chi phí vận hành, ship và COD. Toàn bộ tính toán trong báo cáo dùng con số CM3 sau vận hành.
+    Còn 108 đơn tháng 9 đang ở trạng thái pending, chưa tính vào kỳ này.
+  </div>
+
+  <div class="foot">KNB Digital · MOCHI DURIAN · báo cáo lập ngày 04/09/2026</div>
+</div>
+</div>
+
+<script>
+
+var MK = {
+  LONGDMV: {
+    head: 'ads 134.023.459đ · GMV 343.688.400đ · 1.010 đơn · 1.980 item · 4.323.660đ mỗi ngày',
+    rows: [
+      ['ROAS gộp','2,56×','&ge; 3,80×','r','Dưới mục tiêu 33%',0],
+      ['ROAS thực nhận','1,82×','&ge; 3,00×','r','Vùng báo động',0],
+      ['CPQC','39,0%','&le; 30%','r','Nửa sau tháng vọt lên 42,2%',0],
+      ['Tỉ lệ hoàn','29,2%','&lt; 20%','r','Gần như đứng yên cả tháng',0],
+      ['CPM','68.747đ','&lt; 35.000đ','r','<b>Cao nhất nhóm · +19% khi tăng tiền</b>',1],
+      ['CTR','1,76%','&gt; 2,2%','y','Creative còn khoẻ hơn OANHPTK',0],
+      ['CPC link','3.906đ','&lt; 4.000đ','g','Sát mép trên',0],
+      ['CR Web','3,39%','&gt; 5,5%','r','Chung landing với OANHPTK',0],
+      ['AOV · ABS','772₱ · 1,96','&gt;800₱ · &gt;1,8','y','<b>ABS đang tụt: 2,10 &rarr; 1,86</b>',1],
+      ['CM3 / GMV','18,3%','&gt; 28%','r','63,0 triệu lợi nhuận thật',2]
+    ],
+    verdict: '<b>Gãy ở bước 2 &mdash; CPM tăng.</b> Creative chưa chai (CTR 1,76%, CPC 3.906đ) nhưng CPM cao nhất nhóm và tăng 19% khi đẩy tiền từ 3,39 lên 5,19 triệu mỗi ngày. Đáng lo hơn: <b>ABS rơi 2,10 &rarr; 1,86</b> trong khi OANHPTK đi ngược lại &mdash; cùng sản phẩm, cùng giá, nên đây là cách đóng gói khuyến mãi kém đi chứ không phải thị trường.<br><br><b>Việc cần làm:</b> hạ về 3,5&ndash;4,0 triệu mỗi ngày, lấy lại cách bundle đầu tháng, học kịch bản giảm hoàn của OANHPTK.'
+  },
+  OANHPTK: {
+    head: 'ads 132.398.528đ · GMV 321.261.600đ · 1.021 đơn · 1.853 item · 4.270.920đ mỗi ngày',
+    rows: [
+      ['ROAS gộp','2,43×','&ge; 3,80×','r','Thấp hơn LONGDMV 5%',0],
+      ['ROAS thực nhận','1,62×','&ge; 3,00×','r','<b>Thấp nhất &mdash; hoàn ăn mất phần lớn</b>',1],
+      ['CPQC','41,2%','&le; 30%','r','Đứng yên 41% suốt cả tháng',0],
+      ['Tỉ lệ hoàn','33,2%','&lt; 20%','r','<b>Nhưng đã kéo 39,3% &rarr; 28,4%</b>',3],
+      ['CPM','52.818đ','&lt; 35.000đ','r','Rẻ hơn LONGDMV 23%',0],
+      ['CTR','1,53%','&gt; 2,2%','r','<b>Sát ngưỡng đỏ &mdash; creative chai</b>',1],
+      ['CPC link','3.451đ','&lt; 4.000đ','g','Rẻ hơn LONGDMV 12%',0],
+      ['CR Web','3,31%','&gt; 5,5%','r','Chung landing với LONGDMV',0],
+      ['AOV · ABS','715₱ · 1,81','&gt;800₱ · &gt;1,8','y','<b>ABS đang lên: 1,63 &rarr; 1,98</b>',3],
+      ['CM3 / GMV','13,5%','&gt; 28%','r','43,4 triệu &mdash; kém LONGDMV 31%',2]
+    ],
+    verdict: '<b>Gãy ở bước 3 &mdash; creative chai.</b> CTR 1,53% sát ngưỡng đỏ dù CPM rẻ hơn LONGDMV 23%: traffic rẻ mà người ta không bấm. CPQC đứng yên 41% cả tháng cho thấy tăng tiền không giải quyết được gì.<br><br><b>Nhưng đây là người làm tốt nhất tháng ở phần vận hành:</b> hoàn 39,3% &rarr; 28,4%, ABS 1,63 &rarr; 1,98. Giữ được mức hoàn 28% cả kỳ thì ROAS thực nhận đã là 1,75 thay vì 1,62.<br><br><b>Việc cần làm:</b> thay mẻ creative mới hoàn toàn, giữ nguyên cách vận hành và ghi lại thành quy trình cho LONGDMV.'
+  }
+};
+var DOT = {r:'<span class="badge br">🔴</span>', y:'<span class="badge by">🟡</span>', g:'<span class="badge bg">🟢</span>'};
+function showMk(name){
+  var m = MK[name];
+  document.getElementById('mkHead').innerHTML = m.head;
+  var html = '';
+  for (var i=0;i<m.rows.length;i++){
+    var r = m.rows[i];
+    var cls = r[5]===1 ? ' class="warnrow"' : (r[5]===2 ? ' class="total"' : (r[5]===3 ? ' class="pick"' : ''));
+    html += '<tr'+cls+'><td data-l="Chỉ số">'+r[0]+'</td>'
+          + '<td class="num" data-l="Giá trị"><b>'+r[1]+'</b></td>'
+          + '<td class="num" data-l="Ngưỡng">'+r[2]+'</td>'
+          + '<td class="num" data-l="ĐG">'+DOT[r[3]]+'</td>'
+          + '<td data-l="Ghi chú">'+r[4]+'</td></tr>';
+  }
+  document.getElementById('mkBody').innerHTML = html;
+  document.getElementById('mkVerdict').innerHTML = m.verdict;
+  var ps = document.getElementById('mkPills').querySelectorAll('.wp');
+  for (var j=0;j<ps.length;j++) ps[j].classList.toggle('on', ps[j].textContent === name);
+}
+(function(){
+  var box = document.getElementById('mkPills');
+  var keys = ['LONGDMV','OANHPTK'];
+  keys.forEach(function(k){
+    var b = document.createElement('button');
+    b.className = 'wp'; b.textContent = k;
+    b.onclick = function(){ showMk(k); };
+    box.appendChild(b);
+  });
+  showMk('LONGDMV');
+})();
+
+var PW = 'Knb@2610';
+function openGate(){
+  document.getElementById('gate').classList.add('hidden');
+  document.getElementById('main').style.display = 'block';
+}
+function doGate(){
+  if (document.getElementById('gpw').value === PW){
+    try { localStorage.setItem('knb_durian','1'); } catch(e){}
+    openGate();
+  } else {
+    document.getElementById('gerr').textContent = '❌ Mật khẩu không đúng';
+    document.getElementById('gpw').value = '';
+  }
+}
+try { if (localStorage.getItem('knb_durian')==='1') openGate(); } catch(e){}
+</script>
+</body>
+</html>
