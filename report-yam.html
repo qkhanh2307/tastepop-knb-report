@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAM BEEF NOODLES · KNB — Lãi thật &amp; kế hoạch nhập 10.000</title>
+<title>YAM BEEF NOODLES · KNB — CM3 thật &amp; kế hoạch nhập hàng</title>
 <style>
   :root{color-scheme:light}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -60,7 +60,6 @@
   tr.pick td{background:#f0fdf4}
   .badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.5px;font-weight:750}
   .bg{background:#dcfce7;color:#15803d}.by{background:#fef3c7;color:#b45309}.br{background:#fee2e2;color:#b91c1c}
-  .who{font-weight:750}
   .mut{color:#9aa2b8;font-size:11px;font-weight:400}
 
   .alert{border-radius:12px;padding:15px 18px;font-size:13px;border-left:5px solid #dc2626;
@@ -77,6 +76,20 @@
   .p-y{border-color:#fde68a;background:#fffbeb}.p-y .pv{color:#b45309}.p-y .pn{color:#b45309}
   .p-g{border-color:#bbf7d0;background:#f0fdf4}.p-g .pv{color:#15803d}.p-g .pn{color:#15803d}
 
+  /* thác nước 1 item */
+  .wf{display:grid;gap:7px;margin-top:14px}
+  .wr{display:flex;align-items:center;gap:12px;border-radius:11px;padding:12px 15px}
+  .wr .wl{flex:1;min-width:0}
+  .wr .wt{font-size:12px;font-weight:750}
+  .wr .wd{font-size:10.5px;opacity:.75;margin-top:1px}
+  .wr .wv{text-align:right;flex-shrink:0}
+  .wr .wn{font-size:17px;font-weight:850;line-height:1}
+  .wr .wp{font-size:10.5px;opacity:.75;margin-top:2px}
+  .w-gmv{background:#e0f2fe;color:#075985}
+  .w-cut{background:#fef2f2;color:#b91c1c;font-size:11.5px;padding:8px 15px}
+  .w-mid{background:#f1f5f9;color:#334155}
+  .w-end{background:#dcfce7;color:#15803d}
+
   .zones{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
   .zn{border-radius:13px;padding:15px;text-align:center;border:2px solid #e2e8f0;background:#f8fafc}
   .zn .zt{font-size:10.5px;color:#6b7280;font-weight:750;text-transform:uppercase;letter-spacing:.4px}
@@ -90,6 +103,7 @@
   .v-green{background:#f0fdf4;border-left:5px solid #16a34a;color:#334155}
   .v-blue{background:#f8fafc;border-left:5px solid #0369a1;color:#334155}
   .v-red{background:#fef2f2;border-left:5px solid #dc2626;color:#374151}
+  .v-amber{background:#fffbeb;border-left:5px solid #f59e0b;color:#374151}
 
   .rules{counter-reset:r}
   .ri{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed #e8eaf2;font-size:12.5px}
@@ -143,33 +157,33 @@
 <div class="page">
 
   <div class="hero">
-    <h1>🍜 YAM BEEF NOODLES — Lãi thật &amp; kế hoạch nhập 10.000</h1>
-    <div class="sub">Kỳ 09/06 – 31/08/2026 · marketer HUYTT · Philippines COD · nhập đường biển</div>
+    <h1>🍜 YAM BEEF NOODLES — CM3 thật &amp; kế hoạch nhập hàng</h1>
+    <div class="sub">Kỳ 09/06 – 31/08/2026 · marketer HUYTT · Philippines COD · nguồn: dashboard PFM Duration</div>
     <div class="hero-kpis">
-      <div class="hk good">
-        <div class="lbl">CM3 tích luỹ tới 31/08</div>
-        <div class="val money">82.454.899đ</div>
-        <div class="note">84 ngày · 2.482 item · 24,9% doanh số</div>
-      </div>
       <div class="hk">
-        <div class="lbl">Trích 70% nhập hàng</div>
-        <div class="val money">57.718.429đ</div>
-        <div class="note">30% giữ lại vận hành: 24.736.470đ</div>
+        <div class="lbl">GMV vận đơn</div>
+        <div class="val money">341.080.000đ</div>
+        <div class="note">978 đơn · AOV 793₱ · ROAS 2,90</div>
+      </div>
+      <div class="hk warn">
+        <div class="lbl">CM3 tích luỹ 84 ngày</div>
+        <div class="val money">55.759.736đ</div>
+        <div class="note">chỉ 16,35% GMV · 663.806đ/ngày</div>
+      </div>
+      <div class="hk bad">
+        <div class="lbl">Tỉ lệ hoàn RTS</div>
+        <div class="val">36,04%</div>
+        <div class="note">907/2.595 item hoàn về</div>
       </div>
       <div class="hk bad">
         <div class="lbl">Còn phải bơm vốn</div>
-        <div class="val money">148.251.571đ</div>
-        <div class="note">lô 10.000 unit = 205.970.000đ</div>
+        <div class="val money">166.938.185đ</div>
+        <div class="note">lô 10.000 = 205.970.000đ · tự lo 19%</div>
       </div>
       <div class="hk warn">
-        <div class="lbl">Tồn bán được ngay</div>
-        <div class="val">1.712 unit</div>
-        <div class="note">theo FFM · phải kéo đủ 30 ngày</div>
-      </div>
-      <div class="hk">
-        <div class="lbl">Tàu về</div>
-        <div class="val">04/10/2026</div>
-        <div class="note">nếu đặt hôm nay · lead time 30 ngày</div>
+        <div class="lbl">Tồn / tàu về</div>
+        <div class="val">1.712 · 04/10</div>
+        <div class="note">phải kéo đủ 30 ngày, không có lô bay</div>
       </div>
     </div>
   </div>
@@ -177,7 +191,7 @@
   <!-- 1. VIỆC GẤP -->
   <div class="sec">
     <div class="sec-h"><div class="sec-ic" style="background:#dc2626">🚨</div><h2>1. Việc gấp nhất — siết ads để hàng đủ cầm cự 30 ngày</h2></div>
-    <div class="sec-sub">Tồn 1.712 unit · tàu về 04/10 · không có lô bay dự phòng</div>
+    <div class="sec-sub">Đặt tàu 04/09 · về kho 04/10 · tồn 1.712 unit · không có lô bay dự phòng</div>
 
     <div class="alert">
       Đang chi <b>3,6 triệu ads/ngày</b>, bán ~92 item/ngày → hết hàng <b>22/09</b>, đứt <b>12 ngày</b>.
@@ -208,39 +222,63 @@
     <div class="verdict v-green">
       <b>Một hành động giải quyết ba việc.</b> Kéo ngân sách từ 3,6tr xuống ~1,4 triệu/ngày thì:
       ① tồn 1.712 kéo đủ 30 ngày, <b>không đứt hàng</b> mà không cần lô bay ·
-      ② CPQC rơi từ 43% về ~26%, <b>lãi thêm khoảng 14 triệu</b> trên chính 1.712 unit này ·
+      ② CPQC rơi từ 43% về ~26%, <b>lãi thêm khoảng 10 triệu</b> trên chính 1.712 unit này ·
       ③ dòng tiền tháng 9 dôi ra <b>~66 triệu tiền ads chưa phải chi</b>, dùng luôn cho vốn nhập hàng.
     </div>
   </div>
 
-  <!-- 2. LÃI THẬT -->
+  <!-- 2. CM3 THẬT -->
   <div class="sec">
-    <div class="sec-h"><div class="sec-ic" style="background:#16a34a">💰</div><h2>2. Lãi thật CM3 — hai giai đoạn giá vốn</h2></div>
-    <div class="sec-sub">CM3 = doanh số − quảng cáo − giá vốn − chi phí vận hành</div>
+    <div class="sec-h"><div class="sec-ic" style="background:#16a34a">💰</div><h2>2. CM3 thật — 341 triệu GMV chỉ còn lại 55,76 triệu</h2></div>
+    <div class="sec-sub">Doanh thu chỉ tính đơn Status Final = Delivery · giá vốn không tính trên hàng hoàn về</div>
     <table>
-      <thead><tr>
-        <th>Chỉ số</th>
-        <th class="num">Trước B1G1<br><span class="mut">09/06–07/08 · 60 ngày</span></th>
-        <th class="num">Sau B1G1<br><span class="mut">08/08–31/08 · 24 ngày</span></th>
-        <th class="num">Cộng dồn<br><span class="mut">84 ngày</span></th>
-      </tr></thead>
+      <thead><tr><th>Chỉ số · 84 ngày</th><th class="num">Giá trị</th><th class="num">Quy đổi</th></tr></thead>
       <tbody>
-        <tr><td data-l="Item bán ra">Item bán ra</td><td class="num" data-l="Trước">1.332</td><td class="num" data-l="Sau">1.150</td><td class="num" data-l="Cộng dồn"><b>2.482</b></td></tr>
-        <tr><td data-l="Doanh số">Doanh số</td><td class="num money" data-l="Trước">231.201.900đ</td><td class="num money" data-l="Sau">100.446.750đ</td><td class="num money" data-l="Cộng dồn"><b>331.648.650đ</b></td></tr>
-        <tr><td data-l="DS/item">Doanh số mỗi item</td><td class="num money" data-l="Trước">173.575đ</td><td class="num money" data-l="Sau">87.345đ</td><td class="num" data-l="Cộng dồn">—</td></tr>
-        <tr><td data-l="Quảng cáo">− Quảng cáo</td><td class="num money" data-l="Trước">84.619.895đ <span class="badge br">36,6%</span></td><td class="num money" data-l="Sau">33.147.428đ <span class="badge by">33,0%</span></td><td class="num money" data-l="Cộng dồn">117.767.323đ <span class="badge br">35,5%</span></td></tr>
-        <tr><td data-l="Giá vốn">− Giá vốn hàng</td><td class="num money" data-l="Trước">30.172.464đ</td><td class="num money" data-l="Sau">23.686.550đ</td><td class="num money" data-l="Cộng dồn">53.859.014đ <span class="mut">16,2%</span></td></tr>
-        <tr><td data-l="Vận hành">− Chi phí vận hành</td><td class="num money" data-l="Trước">55.447.164đ</td><td class="num money" data-l="Sau">22.120.250đ</td><td class="num money" data-l="Cộng dồn">77.567.414đ <span class="mut">23,4%</span></td></tr>
-        <tr class="total"><td data-l="CM3">CM3</td><td class="num money" data-l="Trước">60.962.377đ <span class="badge bg">26,4%</span></td><td class="num money" data-l="Sau">21.492.522đ <span class="badge by">21,4%</span></td><td class="num money" data-l="Cộng dồn">82.454.899đ <span class="badge bg">24,9%</span></td></tr>
-        <tr><td data-l="CM3/item">CM3 mỗi item</td><td class="num money" data-l="Trước">45.767đ</td><td class="num money" data-l="Sau">18.689đ</td><td class="num" data-l="Cộng dồn">—</td></tr>
-        <tr><td data-l="CM3/ngày">CM3 mỗi ngày</td><td class="num money" data-l="Trước">1.016.040đ</td><td class="num money" data-l="Sau">895.522đ</td><td class="num" data-l="Cộng dồn">—</td></tr>
-        <tr><td data-l="ABS">ABS (item/đơn)</td><td class="num" data-l="Trước">1,95</td><td class="num" data-l="Sau">4,22</td><td class="num" data-l="Cộng dồn">—</td></tr>
+        <tr><td data-l="Chỉ số">Tổng đơn hàng</td><td class="num" data-l="Giá trị">978</td><td class="num" data-l="Quy đổi">11,6 đơn/ngày</td></tr>
+        <tr><td data-l="Chỉ số">Item xuất kho</td><td class="num" data-l="Giá trị">2.595</td><td class="num" data-l="Quy đổi">30,9 item/ngày</td></tr>
+        <tr><td data-l="Chỉ số">Item giao thành công</td><td class="num" data-l="Giá trị">1.580</td><td class="num" data-l="Quy đổi"><span class="badge by">60,9% item xuất</span></td></tr>
+        <tr><td data-l="Chỉ số">Item hoàn về</td><td class="num" data-l="Giá trị">907</td><td class="num" data-l="Quy đổi"><span class="badge br">34,9% item xuất</span></td></tr>
+        <tr><td data-l="Chỉ số">Item chưa có kết quả cuối</td><td class="num" data-l="Giá trị">108</td><td class="num" data-l="Quy đổi">4,2% item xuất</td></tr>
+        <tr><td data-l="Chỉ số">Chi quảng cáo</td><td class="num money" data-l="Giá trị">117.800.000đ</td><td class="num" data-l="Quy đổi">CPQC 34,54%</td></tr>
+        <tr><td data-l="Chỉ số">ABS · AOV</td><td class="num" data-l="Giá trị">2,65 · 793₱</td><td class="num money" data-l="Quy đổi">348.757đ/đơn</td></tr>
+        <tr><td data-l="Chỉ số">Giá vốn đơn vị</td><td class="num money" data-l="Giá trị">20.597đ</td><td class="num" data-l="Quy đổi">15,7% GMV</td></tr>
+        <tr class="total"><td data-l="Chỉ số">CONTRIBUTION MARGIN 3</td><td class="num money" data-l="Giá trị">55.759.736đ</td><td class="num" data-l="Quy đổi"><span class="badge by">16,35% GMV</span></td></tr>
+        <tr><td data-l="Chỉ số">CM3 mỗi ngày</td><td class="num money" data-l="Giá trị">663.806đ</td><td class="num" data-l="Quy đổi">trung bình 84 ngày</td></tr>
+        <tr><td data-l="Chỉ số">CM3 mỗi item xuất kho</td><td class="num money" data-l="Giá trị">21.487đ</td><td class="num" data-l="Quy đổi">nền tính cho lô 10.000</td></tr>
+        <tr><td data-l="Chỉ số">CM3 mỗi item giao được</td><td class="num money" data-l="Giá trị">35.291đ</td><td class="num" data-l="Quy đổi">trên 1.580 item delivery</td></tr>
       </tbody>
     </table>
-    <div class="verdict v-blue">
-      <b>Đọc bảng này thế nào.</b> Sau Buy 1 Get 1, bán nhanh gấp đôi (47,9 item/ngày so với 22,2) và CPQC tốt hơn 3,6 điểm.
-      Đổi lại doanh số mỗi item giảm đúng một nửa vì tặng kèm, nên giá vốn chiếm tỉ trọng cao hơn và biên lãi mỏng đi 5 điểm.
-      Con số cần theo dõi hằng tuần là <b>CM3 mỗi ngày</b> — thước đo duy nhất gộp được cả tốc độ bán lẫn biên lợi nhuận.
+
+    <div class="sec-sub" style="margin:18px 0 0 0">Một item xuất kho tạo ra bao nhiêu — tiền rơi ở đâu</div>
+    <div class="wf">
+      <div class="wr w-gmv">
+        <div class="wl"><div class="wt">💵 GMV một item xuất kho</div><div class="wd">341,08tr ÷ 2.595 item</div></div>
+        <div class="wv"><div class="wn money">131.439đ</div><div class="wp">100%</div></div>
+      </div>
+      <div class="wr w-cut">− quảng cáo &nbsp;<b>45.397đ · 34,54%</b></div>
+      <div class="wr w-mid">
+        <div class="wl"><div class="wt">🛒 Còn lại sau ads</div></div>
+        <div class="wv"><div class="wn money">86.042đ</div><div class="wp">65,5%</div></div>
+      </div>
+      <div class="wr w-cut">− giá vốn hàng &nbsp;<b>20.597đ · 15,7%</b></div>
+      <div class="wr w-mid">
+        <div class="wl"><div class="wt">📦 Còn lại sau giá vốn</div><div class="wd">giá đã gồm vận chuyển đường biển</div></div>
+        <div class="wv"><div class="wn money">65.445đ</div><div class="wp">49,8%</div></div>
+      </div>
+      <div class="wr w-cut">− tiền mất do hoàn, ship 2 chiều, phí COD, vận hành &nbsp;<b>43.958đ · 33,4%</b></div>
+      <div class="wr w-end">
+        <div class="wl"><div class="wt">💚 CM3 — lãi thật</div><div class="wd">tiền còn lại mỗi item xuất kho</div></div>
+        <div class="wv"><div class="wn money">21.487đ</div><div class="wp">16,35% GMV</div></div>
+      </div>
+    </div>
+
+    <div class="verdict v-red">
+      <b>ROAS 2,90 nghe rất tốt nhưng đó là tính trên GMV vận đơn</b> — bao gồm cả tiền của 907 item hoàn về mà mình không thu được đồng nào.
+      <br><br>
+      <b>Khối 43.958đ mới là chỗ đáng đánh nhất.</b> Đây là khoản lớn thứ hai sau quảng cáo, chiếm 33,4% GMV — phần lớn là tiền
+      không thu được vì 36,04% đơn bị hoàn, cộng phí ship hai chiều cho những đơn đó.
+      Hạ tỉ lệ hoàn từ 36% xuống 30% có tác động ngang với hạ CPQC 6 điểm, mà thường dễ làm hơn:
+      xác thực số điện thoại trước khi đẩy đơn, gọi xác nhận đơn giá trị cao, chặn khách đã hoàn nhiều lần.
     </div>
   </div>
 
@@ -252,52 +290,73 @@
       <thead><tr><th>Khoản</th><th class="num">Số tiền</th><th class="num">Ghi chú</th></tr></thead>
       <tbody>
         <tr><td data-l="Khoản">Vốn hàng cần chi</td><td class="num money" data-l="Số tiền">205.970.000đ</td><td class="num" data-l="Ghi chú">10.000 × 20.597đ</td></tr>
-        <tr><td data-l="Khoản">Nguồn tự có — 70% CM3 tới 31/08</td><td class="num money" data-l="Số tiền">− 57.718.429đ</td><td class="num" data-l="Ghi chú">tự tài trợ 28,0%</td></tr>
-        <tr class="total"><td data-l="Khoản">CÒN PHẢI BƠM — trả tiền ngay tuần này</td><td class="num money" data-l="Số tiền">148.251.571đ</td><td class="num" data-l="Ghi chú">72,0% vốn lô</td></tr>
-        <tr><td data-l="Khoản">Cộng 70% CM3 sinh ra trong tháng 9</td><td class="num money" data-l="Số tiền">− 25.750.000đ</td><td class="num" data-l="Ghi chú">khi bán nốt 1.712 tồn</td></tr>
-        <tr class="pick"><td data-l="Khoản"><b>CÒN PHẢI BƠM — trả tiền cuối tháng 9</b></td><td class="num money" data-l="Số tiền"><b>122.501.571đ</b></td><td class="num" data-l="Ghi chú">59,5% vốn lô</td></tr>
+        <tr><td data-l="Khoản">Nguồn tự có — 70% CM3 tới 31/08</td><td class="num money" data-l="Số tiền">− 39.031.815đ</td><td class="num" data-l="Ghi chú">tự tài trợ <b>19,0%</b></td></tr>
+        <tr class="total"><td data-l="Khoản">CÒN PHẢI BƠM — trả tiền ngay tuần này</td><td class="num money" data-l="Số tiền">166.938.185đ</td><td class="num" data-l="Ghi chú">81,0% vốn lô</td></tr>
+        <tr><td data-l="Khoản">Cộng 70% CM3 sinh ra trong tháng 9</td><td class="num money" data-l="Số tiền">− 25.750.469đ</td><td class="num" data-l="Ghi chú">1.712 × 21.487đ = 36,79tr</td></tr>
+        <tr class="pick"><td data-l="Khoản"><b>CÒN PHẢI BƠM — trả tiền cuối tháng 9</b></td><td class="num money" data-l="Số tiền"><b>141.187.716đ</b></td><td class="num" data-l="Ghi chú">68,5% vốn lô</td></tr>
       </tbody>
     </table>
     <div class="verdict v-red">
-      <b>Lô này không tự tài trợ được.</b> 84 ngày bán mới tích được 82,45 triệu CM3; trích 70% ra chỉ đủ <b>28%</b> vốn lô hàng.
+      <b>Lô này không tự tài trợ được.</b> 84 ngày bán mới tích được 55,76 triệu CM3; trích 70% ra chỉ đủ <b>19%</b> vốn lô.
       <br><br>
       <b>Việc làm ngay để giảm số phải bơm:</b> hỏi nhà cung cấp cho trả <b>50% khi đặt, 50% khi hàng lên tàu</b>.
-      Kéo được 30 ngày là số phải bơm rơi từ 148,3 triệu xuống <b>122,5 triệu</b> — giảm gần 26 triệu mà không tốn gì.
+      Kéo được 30 ngày là số phải bơm rơi từ 166,9 triệu xuống <b>141,2 triệu</b> — giảm gần 26 triệu mà không tốn gì.
       <br><br>
-      <b>Tiền quay lại khi nào:</b> ở nhịp 2,0tr ads/ngày, lô 10.000 tạo 230,6 triệu CM3 trong 122 ngày (1,89 triệu/ngày).
-      Hoàn đủ 206 triệu vốn hàng sau ~109 ngày kể từ ngày bắt đầu bán; cộng 30 ngày chờ tàu thì <b>vòng đời vốn ~139 ngày</b>.
+      <b>Cảnh báo vòng vốn:</b> ở nhịp CM3 hiện tại 663.806đ/ngày, phải mất <b>310 ngày</b> mới hoàn đủ 206 triệu vốn hàng —
+      dài hơn cả vòng đời lô hàng. Bắt buộc phải cải thiện CPQC hoặc giảm số lượng nhập thì lô này mới quay vốn kịp.
     </div>
   </div>
 
-  <!-- 4. KỊCH BẢN -->
+  <!-- 4. ĐÒN BẨY CPQC -->
   <div class="sec">
-    <div class="sec-h"><div class="sec-ic" style="background:#7c3aed">🎯</div><h2>4. Chọn nhịp ads cho lô 10.000</h2></div>
-    <div class="sec-sub">Giữ nguyên doanh số/item 87.345đ · giá vốn 20.597đ · vận hành 19.235đ · chỉ đổi mức chi ads</div>
+    <div class="sec-h"><div class="sec-ic" style="background:#7c3aed">🎯</div><h2>4. Đòn bẩy CPQC — mỗi 1 điểm % là 13,1 triệu</h2></div>
+    <div class="sec-sub">Nền: GMV 131.439đ và CM3 21.487đ mỗi item xuất kho, đo trên toàn kỳ · chỉ đổi mức CPQC</div>
     <table>
       <thead><tr>
-        <th>Kịch bản</th><th class="num">Ads/ngày</th><th class="num">CPQC</th><th class="num">Item/ngày</th>
-        <th class="num">Số ngày bán</th><th class="num">Tổng ads</th><th class="num">CM3</th><th class="num">%CM3</th>
+        <th>Kịch bản</th><th class="num">CPQC</th><th class="num">Ads mỗi item</th>
+        <th class="num">CM3 mỗi item</th><th class="num">Tổng ads</th><th class="num">CM3 cả lô</th><th class="num">Chênh</th>
       </tr></thead>
       <tbody>
-        <tr><td data-l="Kịch bản">Siết mạnh</td><td class="num" data-l="Ads/ngày">1.700.000đ</td><td class="num" data-l="CPQC">26,0%</td><td class="num" data-l="Item/ngày">75</td><td class="num" data-l="Số ngày">134</td><td class="num money" data-l="Tổng ads">227.100.000đ</td><td class="num money" data-l="CM3">248.000.000đ</td><td class="num" data-l="%CM3">28,4%</td></tr>
-        <tr class="pick"><td data-l="Kịch bản"><b>Siết vừa — ĐỀ XUẤT</b></td><td class="num" data-l="Ads/ngày"><b>2.000.000đ</b></td><td class="num" data-l="CPQC">28,0%</td><td class="num" data-l="Item/ngày">82</td><td class="num" data-l="Số ngày">122</td><td class="num money" data-l="Tổng ads">244.600.000đ</td><td class="num money" data-l="CM3"><b>230.600.000đ</b></td><td class="num" data-l="%CM3">26,4%</td></tr>
-        <tr><td data-l="Kịch bản">Trung bình</td><td class="num" data-l="Ads/ngày">2.400.000đ</td><td class="num" data-l="CPQC">30,0%</td><td class="num" data-l="Item/ngày">92</td><td class="num" data-l="Số ngày">109</td><td class="num money" data-l="Tổng ads">262.000.000đ</td><td class="num money" data-l="CM3">213.100.000đ</td><td class="num" data-l="%CM3">24,4%</td></tr>
-        <tr><td data-l="Kịch bản">Giữ nhịp hiện tại</td><td class="num" data-l="Ads/ngày">2.900.000đ</td><td class="num" data-l="CPQC">33,0%</td><td class="num" data-l="Item/ngày">101</td><td class="num" data-l="Số ngày">99</td><td class="num money" data-l="Tổng ads">288.200.000đ</td><td class="num money" data-l="CM3">186.900.000đ</td><td class="num" data-l="%CM3">21,4%</td></tr>
+        <tr><td data-l="Kịch bản">Giữ nhịp toàn kỳ</td><td class="num" data-l="CPQC">34,54%</td><td class="num money" data-l="Ads/item">45.397đ</td><td class="num money" data-l="CM3/item">21.487đ</td><td class="num money" data-l="Tổng ads">454.000.000đ</td><td class="num money" data-l="CM3 cả lô">214.900.000đ</td><td class="num" data-l="Chênh">—</td></tr>
+        <tr><td data-l="Kịch bản">Kéo về 32%</td><td class="num" data-l="CPQC">32,0%</td><td class="num money" data-l="Ads/item">42.060đ</td><td class="num money" data-l="CM3/item">24.825đ</td><td class="num money" data-l="Tổng ads">420.600.000đ</td><td class="num money" data-l="CM3 cả lô">248.300.000đ</td><td class="num" data-l="Chênh"><span class="badge bg">+33,4tr</span></td></tr>
+        <tr class="pick"><td data-l="Kịch bản"><b>Kéo về 30%</b></td><td class="num" data-l="CPQC">30,0%</td><td class="num money" data-l="Ads/item">39.431đ</td><td class="num money" data-l="CM3/item">27.454đ</td><td class="num money" data-l="Tổng ads">394.300.000đ</td><td class="num money" data-l="CM3 cả lô"><b>274.500.000đ</b></td><td class="num" data-l="Chênh"><span class="badge bg">+59,6tr</span></td></tr>
+        <tr><td data-l="Kịch bản">Kéo về 28%</td><td class="num" data-l="CPQC">28,0%</td><td class="num money" data-l="Ads/item">36.802đ</td><td class="num money" data-l="CM3/item">30.083đ</td><td class="num money" data-l="Tổng ads">368.000.000đ</td><td class="num money" data-l="CM3 cả lô">300.800.000đ</td><td class="num" data-l="Chênh"><span class="badge bg">+85,9tr</span></td></tr>
       </tbody>
     </table>
     <div class="verdict v-green">
-      <b>Vì sao chọn 2,0 triệu/ngày chứ không siết mạnh nhất.</b> Mức 1,7tr cho lãi cao nhất (248,0 triệu) nhưng kéo dài 134 ngày —
-      vốn 206 triệu bị giam gần 5 tháng, chưa kể 30 ngày chờ tàu. Mức 2,0tr lãi 230,6 triệu, bán xong trong 122 ngày:
-      chênh lệch lãi chỉ 17,4 triệu nhưng <b>rút ngắn 12 ngày vòng vốn</b>.
+      <b>Con số đáng nhớ nhất trong cả báo cáo: mỗi 1 điểm phần trăm CPQC giảm được là 13,1 triệu CM3 trên lô 10.000.</b>
+      Kéo từ 34,54% xuống 30% là <b>+59,6 triệu</b> — nhiều hơn toàn bộ CM3 kiếm được trong 84 ngày vừa qua.
+      Đây là đòn bẩy mạnh nhất, mạnh hơn cả đàm phán giá vốn: giá vốn giảm được 10% cũng chỉ thêm 20,6 triệu.
+    </div>
+
+    <div class="sec-sub" style="margin:20px 0 10px 0">Số ngày bán hết lô 10.000 — phụ thuộc mức chi mỗi ngày</div>
+    <table>
+      <thead><tr>
+        <th>Mức chi ads</th><th class="num">CPQC</th><th class="num">Item/ngày</th>
+        <th class="num">Số ngày bán hết</th><th class="num">CM3 mỗi ngày</th>
+      </tr></thead>
+      <tbody>
+        <tr><td data-l="Mức chi">2.900.000đ/ngày <span class="mut">nhịp hiện tại</span></td><td class="num" data-l="CPQC">34,54%</td><td class="num" data-l="Item/ngày">63,9</td><td class="num" data-l="Số ngày">157</td><td class="num money" data-l="CM3/ngày">1.370.000đ</td></tr>
+        <tr><td data-l="Mức chi">2.400.000đ/ngày</td><td class="num" data-l="CPQC">32,0%</td><td class="num" data-l="Item/ngày">57,1</td><td class="num" data-l="Số ngày">175</td><td class="num money" data-l="CM3/ngày">1.420.000đ</td></tr>
+        <tr><td data-l="Mức chi">2.000.000đ/ngày</td><td class="num" data-l="CPQC">30,0%</td><td class="num" data-l="Item/ngày">50,7</td><td class="num" data-l="Số ngày">197</td><td class="num money" data-l="CM3/ngày">1.390.000đ</td></tr>
+        <tr><td data-l="Mức chi">1.700.000đ/ngày</td><td class="num" data-l="CPQC">28,0%</td><td class="num" data-l="Item/ngày">46,2</td><td class="num" data-l="Số ngày">216</td><td class="num money" data-l="CM3/ngày">1.390.000đ</td></tr>
+      </tbody>
+    </table>
+    <div class="verdict v-amber">
+      <b>Vấn đề lớn nhất của lô 10.000 không phải tiền — mà là thời gian.</b> Ở mọi mức chi, lô này mất <b>157 đến 216 ngày</b>
+      mới bán hết; cộng 30 ngày chờ tàu là <b>vòng đời vốn 6–8 tháng</b>.
       <br><br>
-      <b>Cột mốc cần nhớ: đừng vượt 2,4 triệu/ngày.</b> Trên mức đó CPQC leo nhanh, mỗi 0,5 triệu chi thêm làm mất khoảng 20 triệu lãi trên cả lô.
+      Hai cách rút ngắn: <b>nhập 5.000–6.000 thay vì 10.000</b> — vòng vốn còn 3–4 tháng và tiền phải bơm giảm xuống
+      <b>64–85 triệu</b> thay vì 167 triệu; hoặc <b>thêm marketer thứ hai</b> để tăng sản lượng mà không phải đẩy CPQC lên.
+      Con số sẽ tốt hơn khi có dữ liệu riêng giai đoạn sau Buy 1 Get 1 — hiệu suất ads gần đây tốt hơn 57%,
+      số ngày có thể rút xuống quanh 100–140 ngày.
     </div>
   </div>
 
   <!-- 5. BẰNG CHỨNG -->
   <div class="sec">
     <div class="sec-h"><div class="sec-ic" style="background:#0f172a">⚡</div><h2>5. Bằng chứng cho ngưỡng ngân sách — CPQC theo mức chi</h2></div>
-    <div class="sec-sub">21 ngày gần nhất · cùng sản phẩm, cùng marketer, chỉ khác mức chi mỗi ngày</div>
+    <div class="sec-sub">21 ngày gần nhất · trung bình 1,92tr ads/ngày · 66,4 item/ngày · 28.986đ ads mỗi item</div>
     <div class="zones">
       <div class="zn good">
         <div class="zt">Vùng hiệu quả</div>
@@ -317,7 +376,9 @@
     </div>
     <div class="verdict v-blue">
       Đây không phải suy đoán. Cùng sản phẩm, cùng người chạy: chi 1,5 triệu thì CPQC 18%, chi 3,6 triệu thì CPQC 43%.
-      Con số này là căn cứ cho cả hai quyết định — siết ads tháng 9 để cầm cự, và giữ 2,0 triệu/ngày cho lô mới.
+      Con số này là căn cứ cho cả hai quyết định — siết ads tháng 9 để cầm cự, và chọn mức chi cho lô mới.
+      Riêng 21 ngày gần nhất chỉ tốn 28.986đ ads mỗi item so với 45.397đ trung bình cả kỳ, tức <b>tốt hơn 57%</b> —
+      đây là cơ sở để tin CPQC 30% là mục tiêu khả thi.
     </div>
   </div>
 
@@ -328,49 +389,52 @@
     <div class="rules">
       <div class="ri urgent"><div class="n"></div><div>
         <div class="rh">Hôm nay — kéo ngân sách ads về ~1,4 triệu/ngày</div>
-        <div class="rd">Việc gấp nhất. Đang chi 3,6 triệu. Không kéo xuống thì hết hàng 22/09 và đứt 12 ngày vì không có lô bay. Kéo xuống thì tồn đủ tới 04/10, CPQC về ~26%, lãi thêm ~14 triệu.</div>
+        <div class="rd">Việc gấp nhất. Đang chi 3,6 triệu. Không kéo xuống thì hết hàng 22/09 và đứt 12 ngày vì không có lô bay. Kéo xuống thì tồn đủ tới 04/10, CPQC về ~26%, lãi thêm khoảng 10 triệu.</div>
         <span class="rw">Làm ngay · dôi ra ~66 triệu tiền ads</span>
       </div></div>
       <div class="ri urgent"><div class="n"></div><div>
-        <div class="rh">Tuần này — chốt nguồn vốn 148 triệu trước khi đặt hàng</div>
-        <div class="rd">70% CM3 tích luỹ chỉ được 57,7 triệu, đủ 28% vốn lô. Phần còn lại phải có tiền tươi. Đây là điều kiện tiên quyết — chưa chốt được nguồn thì chưa đặt hàng.</div>
-        <span class="rw">Điều kiện tiên quyết</span>
+        <div class="rh">Tuần này — chốt lại số lượng nhập trước khi chốt vốn</div>
+        <div class="rd">Lô 10.000 cần bơm 167 triệu và mất 6–8 tháng quay vốn. Lô 5.000–6.000 chỉ cần bơm 64–85 triệu, vòng vốn 3–4 tháng. Nên cân nhắc nhập nhỏ hơn cho tới khi CPQC về 30% ổn định.</div>
+        <span class="rw">Quyết định gốc — chi phối mọi việc còn lại</span>
+      </div></div>
+      <div class="ri urgent"><div class="n"></div><div>
+        <div class="rh">Tuần này — chốt nguồn vốn 167 triệu và hỏi trả chậm 50/50</div>
+        <div class="rd">70% CM3 tích luỹ chỉ được 39,0 triệu, đủ 19% vốn lô. Phần còn lại phải có tiền tươi — chưa chốt được nguồn thì chưa đặt hàng. Xin trả 50% khi đặt, 50% khi hàng lên tàu để giảm còn 141,2 triệu.</div>
+        <span class="rw">Điều kiện tiên quyết · giảm 26 triệu</span>
       </div></div>
       <div class="ri"><div class="n"></div><div>
-        <div class="rh">Tuần này — chốt lô tàu 10.000 unit và hỏi trả chậm 50/50</div>
-        <div class="rd">Hỏi nhà cung cấp cho trả 50% khi đặt, 50% khi hàng lên tàu. Kéo được 30 ngày thì số phải bơm rơi từ 148,3 xuống 122,5 triệu.</div>
-        <span class="rw">Giảm 26 triệu, không tốn gì</span>
+        <div class="rh">Tháng 9 — đánh vào tỉ lệ hoàn 36%, không chỉ đánh vào CPQC</div>
+        <div class="rd">Khối tiền mất do hoàn và ship hai chiều là 43.958đ mỗi item, chiếm 33,4% GMV — lớn thứ hai sau quảng cáo. Hạ hoàn từ 36% xuống 30% có tác động ngang hạ CPQC 6 điểm: xác thực số điện thoại trước khi đẩy đơn, gọi xác nhận đơn giá trị cao, chặn khách đã hoàn nhiều lần.</div>
+        <span class="rw">Đòn bẩy bị bỏ quên</span>
       </div></div>
       <div class="ri"><div class="n"></div><div>
         <div class="rh">Tháng 9 — test gói khuyến mãi thứ hai và nhắn lại khách cũ</div>
-        <div class="rd">Chạy song song "mua 2 tặng 1" hoặc B1G1 giá cao hơn trong 2 tuần, rồi so CM3 mỗi ngày giữa hai gói. Song song đó, nhắn lại khách vào tuần thứ 4 sau khi giao — tỉ lệ mua lại của YAM là 3,4%, cao nhất trong ba SKU, và khách quay lại chi gần gấp đôi mà không tốn đồng quảng cáo nào.</div>
-        <span class="rw">Mỗi 1 điểm % biên lãi trên lô 10.000 ≈ 9 triệu</span>
+        <div class="rd">Chạy song song "mua 2 tặng 1" hoặc B1G1 giá cao hơn trong 2 tuần, rồi so CM3 mỗi ngày giữa hai gói. Song song đó nhắn lại khách vào tuần thứ 4 sau khi giao — tỉ lệ mua lại của YAM là 3,4%, cao nhất trong ba SKU, khách quay lại chi gần gấp đôi mà không tốn đồng quảng cáo nào.</div>
+        <span class="rw">Mỗi 1 điểm % CPQC ≈ 13,1 triệu trên lô 10.000</span>
       </div></div>
       <div class="ri"><div class="n"></div><div>
         <div class="rh">Trước khi hàng về — cho marketer thứ hai chạy song song</div>
-        <div class="rd">Toàn bộ sản lượng đang đến từ một người. Nếu HUYTT nghỉ hoặc tài khoản gặp sự cố thì 10.000 unit thành hàng tồn. Rủi ro này quá lớn so với lô hàng 206 triệu.</div>
+        <div class="rd">Toàn bộ sản lượng đang đến từ một người. Nếu HUYTT nghỉ hoặc tài khoản gặp sự cố thì hàng thành tồn kho. Thêm người còn giúp tăng sản lượng mà không phải đẩy CPQC lên — cách duy nhất rút ngắn vòng vốn mà không giảm lãi.</div>
         <span class="rw">Giảm rủi ro tập trung</span>
       </div></div>
       <div class="ri"><div class="n"></div><div>
         <div class="rh">Hằng tuần — báo cáo CM3 mỗi ngày, không chỉ báo ROAS</div>
-        <div class="rd">ROAS và CPQC không nhìn thấy phần giá vốn và chi phí vận hành. Chỉ số chốt hằng tuần của mã này là CM3 mỗi ngày, kèm ads/ngày và item/ngày để biết đang ở vùng nào.</div>
+        <div class="rd">ROAS 2,90 vẫn đẹp trong khi CM3 chỉ còn 16,35% GMV — ROAS không nhìn thấy hàng hoàn, giá vốn và chi phí vận hành. Chỉ số chốt hằng tuần của mã này là CM3 mỗi ngày lấy từ dashboard PFM Duration, kèm ads/ngày và item/ngày.</div>
       </div></div>
     </div>
   </div>
 
   <div class="note">
-    <b>Cách tính và chỗ cần soát.</b> Doanh số hai giai đoạn được tách bằng cách giải hệ hai phương trình từ tổng doanh số 365,1 triệu
-    và tổng ads 128,8 triệu, với CPQC 36,6% giai đoạn 1 và 33,0% giai đoạn 2 — kết quả doanh số mỗi item 173.575đ và 87.345đ,
-    đúng tỉ lệ 2,0 lần, khớp bản chất Buy 1 Get 1.<br>
-    Chi phí vận hành tính theo 81.172đ mỗi đơn, quy về mỗi item theo ABS từng giai đoạn (41.627đ và 19.235đ).
-    Giá vốn đầy đủ 20.597đ/pack cho lô mới và 22.652đ/pack cho lô 27/07 — sổ nhập ghi 12.439đ là giá chưa gồm vận chuyển.
-    Tồn 1.712 là số bán được ngay theo FFM; sổ kho ghi 2.098 vì tính cả hàng hoàn đang trên đường về.<br>
-    <b>Điểm cần theo dõi:</b> kịch bản 10.000 giả định doanh số mỗi item giữ 87.345đ suốt kỳ. Gói B1G1 mới chạy 24 ngày,
-    chưa đủ dài để biết ABS 4,22 có bền không khi tệp khách bão hoà — nếu ABS tụt thì toàn bộ bảng phải tính lại.
-    Số liệu vận đơn tới 31/08/2026 cho phần CM3, tới 03/09/2026 cho phần CPQC, đã loại đơn Cancel.
+    <b>Nguồn số liệu và chỗ cần soát.</b> Toàn bộ số ở mục 2 lấy trực tiếp từ dashboard <b>PFM Duration</b>, lọc SKU YAM BEEF NOODLES,
+    Startdate 9/6/26 – Enddate 31/8/26, doanh thu chỉ tính đơn Status Final = Delivery, đã loại đơn Cancel. Công thức CM3 là công thức sẵn có trên dashboard.<br>
+    Còn <b>108 item</b> chưa có kết quả cuối (đang giao / pending) — nếu tất cả về đích thì CM3 nhích lên, mức tác động ước tính dưới 4%.<br>
+    Mục 4 tính trên hiệu suất <b>trung bình toàn kỳ 84 ngày</b>, trong đó 60 ngày đầu chưa có gói Buy 1 Get 1.
+    Cần chạy lại dashboard với <b>Startdate 8/8/26</b> để chốt số ngày bán và ngân sách theo tháng cho lô mới.<br>
+    Tỉ lệ tái nhập hàng hoàn chưa được đo — nếu 907 item hoàn về bán lại được phần lớn thì số lượt xuất kho từ lô mới sẽ nhiều hơn
+    và CM3 cả lô cao hơn bảng ở mục 4. Bảng CPQC theo ngày ở mục 5 lấy số liệu tới 03/09/2026.
   </div>
 
-  <div class="foot">KNB Digital · YAM BEEF NOODLES · báo cáo lập ngày 04/09/2026</div>
+  <div class="foot">KNB Digital · YAM BEEF NOODLES · cập nhật 04/09/2026 · nguồn PFM Duration</div>
 </div>
 </div>
 
